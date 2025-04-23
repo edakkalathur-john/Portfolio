@@ -31,7 +31,7 @@ function HomePage() {
             transition={{duration: 0.5, delay: 0.2}}
             className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4"
           >
-            Robotics Engineer <span className="text-zinc-400">designing</span>
+            Robotics Engineer <span className="text-zinc-400 font-normal">designing</span>
           </motion.h1>
           <motion.p
             initial={{opacity: 0, y: 20}}
