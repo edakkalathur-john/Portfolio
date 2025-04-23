@@ -12,12 +12,12 @@ function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center justify-center bg-black text-white py-20 px-4 sm:px-6 lg:px-8">
+      <section className="min-h-screen relative flex items-center justify-center bg-black text-white px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-black" />
         </div>
-        <div className="relative max-w-5xl mx-auto w-full text-center">
-          <motion.div
+        <div className="relative max-w-5xl mx-auto w-full text-center py-20">
+           <motion.div
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5}}
@@ -25,29 +25,29 @@ function HomePage() {
           >
             Hello, I'm Benhar 👋
           </motion.div>
-          <motion.h1
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5, delay: 0.2}}
-            className="font-bold mb-4 leading-tight"
-            style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
-          >
-            Robotics Engineer <span className="text-zinc-400 font-normal">designing</span>
-          </motion.h1>
-          <motion.h2
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5, delay: 0.4}}
-            className="text-zinc-400 mb-8 leading-relaxed"
-            style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400 }}
-          >
-            AI-powered intelligent systems
-          </motion.h2>
+           <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-bold leading-tight"
+              style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
+            >
+              Robotics Engineer <span className="font-normal text-zinc-400">designing</span>
+            </motion.h1>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-zinc-400 leading-relaxed mt-2"
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400 }}
+            >
+              AI-powered intelligent systems
+            </motion.h2>
           <motion.div
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5, delay: 0.6}}
-           className="flex justify-center"
+           className="flex justify-center mt-8"
           >
              <a
               href="mailto:benharej@gmail.com"
@@ -58,53 +58,55 @@ function HomePage() {
           </motion.div>
         </div>
       </section>
-
-      <Education />
-      <Experience />
-      <Skills />
-    </>
-  );
-}
-
-export default function App() {
-  return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-800">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div>
-            <Link href="/" className="text-lg font-semibold">
-              Benhar John
-            </Link>
-          </div>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://github.com/BenharJohn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-zinc-300 transition-colors"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/benhar-john"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-zinc-300 transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:benharej@gmail.com"
-              className="hover:text-zinc-300 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </nav>
-      </header>
-
-      <HomePage />
-    </div>
-  );
-}
+ 
+       <Education />
+       <Experience />
+       <Skills />
+     </>
+   );
+ }
+ 
+ export default function App() {
+   return (
+     <div className="min-h-screen bg-zinc-950 text-white">
+       {/* Header */}
+       <header className="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-800">
+         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+           <div>
+             <Link href="/" className="text-lg font-semibold">
+               Benhar John
+             </Link>
+           </div>
+           <div className="flex items-center gap-6">
+             <a
+               href="https://github.com/BenharJohn"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="hover:text-zinc-300 transition-colors"
+             >
+               <Github className="w-5 h-5" />
+             </a>
+             <a
+               href="https://linkedin.com/in/benhar-john"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="hover:text-zinc-300 transition-colors"
+             >
+               <Linkedin className="w-5 h-5" />
+             </a>
+             <a
+               href="mailto:benharej@gmail.com"
+               className="hover:text-zinc-300 transition-colors"
+             >
+               <Mail className="w-5 h-5" />
+             </a>
+           </div>
+         </nav>
+       </header>
+ 
+       <HomePage />
+     </div>
+   );
+ }
+ 
+ 
