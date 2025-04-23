@@ -12,11 +12,11 @@ function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center justify-center">
+      <section className="min-h-screen relative flex items-center justify-center bg-black text-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-zinc-950" />
+          <div className="absolute inset-0 bg-black" />
         </div>
-        <div className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full text-center">
+        <div className="relative max-w-5xl mx-auto w-full text-center">
           <motion.div
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
@@ -29,24 +29,27 @@ function HomePage() {
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5, delay: 0.2}}
-            className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4"
+            className="font-bold mb-4 leading-tight"
+            style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
           >
             Robotics Engineer <span className="text-zinc-400 font-normal">designing</span>
           </motion.h1>
-          <motion.p
+          <motion.h2
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5, delay: 0.4}}
-            className="text-xl text-zinc-400 mb-8"
+            className="text-zinc-400 mb-8 leading-relaxed"
+            style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400 }}
           >
             AI-powered intelligent systems
-          </motion.p>
+          </motion.h2>
           <motion.div
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5, delay: 0.6}}
+           className="flex justify-center"
           >
-            <a
+             <a
               href="mailto:benharej@gmail.com"
               className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
             >
