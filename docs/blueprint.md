@@ -1,13 +1,30 @@
-'use client';
+# **App Name**: Portfolio Pro
 
+## Core Features:
+
+- Project Showcase: Display a list of featured projects with title, description, technologies used, and a link to a detailed page.
+- Education Display: Display education history with institution, degree, and dates.
+- Experience Timeline: Display experience history with company, title, and dates.
+
+## Style Guidelines:
+
+- Primary color: Dark background (#18181b) for a modern look.
+- Secondary color: Light gray (#a1a1aa) for text and subtle elements.
+- Accent: Teal (#2dd4cf) for interactive elements and highlights.
+- Use a clean and modern sans-serif font for headings and body text.
+- Use a grid-based layout for the project showcase to maintain consistency.
+- Subtle animations on hover for project cards and links to enhance user experience.
+
+## Original User Request:
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Github, Mail, Linkedin, Notebook as Robot, Cloud, Box, Code, Database, Cpu, ChevronRight as ChessKnight, Hand } from 'lucide-react';
+import { Scene } from './components/Scene';
 import { ProjectDetail } from './components/ProjectDetail';
 import { Education } from './components/Education';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Link from 'next/link';
 
 function HomePage() {
   const { scrollY } = useScroll();
@@ -150,7 +167,7 @@ function HomePage() {
           </div>
         </div>
         <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block pointer-events-none">
-          {/*<Scene />*/}
+          <Scene />
         </div>
       </section>
 
@@ -166,13 +183,13 @@ function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link
-                href={`/project/${project.id}`}
+              <Link 
+                to={`/project/${project.id}`}
                 className="group relative overflow-hidden rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors block"
               >
                 <div className="absolute inset-0 z-0">
-                  <img
-                    src={project.image}
+                  <img 
+                    src={project.image} 
                     alt={project.title}
                     className="w-full h-full object-cover filter blur-sm brightness-50 scale-105"
                   />
@@ -206,22 +223,22 @@ function HomePage() {
   );
 }
 
-export default function App() {
+function App() {
   const { scrollY } = useScroll();
   const headerScale = useTransform(scrollY, [0, 100], [1, 0.8]);
-  const headerOpacity = useTransform(scrollY, [0, 100], [1, 0]);
+  const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-      <motion.header
-        style={{ opacity: headerOpacity, scale: headerScale }}
+      <motion.header 
+        style={{ opacity: headerOpacity }}
         className="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-800"
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div>
-            <Link href="/" className="text-lg font-semibold">Benhar John</Link>
-          </div>
+          <motion.div style={{ scale: headerScale }}>
+            <Link to="/" className="text-lg font-semibold">Benhar John</Link>
+          </motion.div>
           <div className="flex items-center gap-6">
             <a href="https://github.com/BenharJohn" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">
               <Github className="w-5 h-5" />
@@ -236,7 +253,13 @@ export default function App() {
         </nav>
       </motion.header>
 
-      <HomePage />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
+      </Routes>
     </div>
   );
 }
+
+export default App;
+  
