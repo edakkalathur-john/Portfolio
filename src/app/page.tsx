@@ -29,10 +29,10 @@ function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-bold leading-tight"
+              className="font-bold leading-tight text-white"
               style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
             >
-              Robotics Engineer <span className="font-normal text-zinc-400">designing</span>
+              Robotics Engineer <span className="font-normal" style={{color:'#a3a3a3'}}>designing</span>
             </motion.h1>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
