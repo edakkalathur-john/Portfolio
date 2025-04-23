@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, Notebook as Robot, Cloud, Box, Code, Database, Cpu, ChevronRight as ChessKnight, Hand } from 'lucide-react';
-import { ProjectDetail } from './components/ProjectDetail';
 import { Education } from './components/Education';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
@@ -240,3 +239,4 @@ export default function App() {
     </div>
   );
 }
+
