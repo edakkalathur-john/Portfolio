@@ -26,14 +26,13 @@ function HomePage() {
               className="font-bold leading-tight text-white "
               style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: '1.1' }}
             >
-              Robotics Engineer <span className="font-normal text-zinc-400">designing</span>
-			  <br/>
-               <motion.h2
+              Robotics Engineer 
+               <div
               className="text-zinc-400 leading-relaxed mt-2"
               style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400, lineHeight: '1.3' }}
             >
               AI-powered intelligent systems
-            </motion.h2>
+            </div>
  
  
              
