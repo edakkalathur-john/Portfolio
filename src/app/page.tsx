@@ -54,39 +54,16 @@ export default function App() {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center justify-center bg-black text-white px-4 font-inter">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-black" />
+      <section className="hero-section">
+        <div className="hero-container">
+          <div className="badge">Hello, I'm Benhar 🔥</div>
+           <h1 className="hero-h1">
+              Robotics Engineer
+              <span className="hero-light-gray"> designing</span>
+            </h1>
+            <h2 className="hero-subtext">AI-powered intelligent systems</h2>
+            <a href="mailto:benharej@gmail.com" className="cta-button">Contact me →</a>
         </div>
-        <div className="relative max-w-5xl mx-auto w-full text-center py-20">
-           <motion.div
-             className="inline-block bg-zinc-800 text-zinc-300 rounded-full px-4 py-2 mb-6 text-sm"
-           >
-             Hello, I'm Benhar 🔥
-           </motion.div>
-            <motion.h1
-              className="font-semibold leading-tight text-white"
-              style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
-            >
-              Robotics Engineer <span className="font-normal" style={{color:'#a3a3a3'}}>designing</span>
-            </motion.h1>
-            <motion.h2
-              className="text-gray-400 font-normal leading-snug mt-1"
-              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
-            >
-              AI-powered intelligent systems
-            </motion.h2>
-          <motion.div
-            className="flex justify-center mt-8"
-           >
-              <a
-               href="mailto:benharej@gmail.com"
-               className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
-             >
-              Contact me <ChevronRight className="w-4 h-4" />
-            </a>
-           </motion.div>
-         </div>
        </section>
  
          <Education />
