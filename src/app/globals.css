@@ -88,17 +88,7 @@ body {
   }
 }
 /* Hero Section Styles */
-.hero-section {
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-  font-family: 'Inter', sans-serif;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
+
 
 .hero-container {
   text-align: center;
@@ -156,4 +146,5 @@ h1 {
   background-color: white;
   color: black;
 }
+
 
