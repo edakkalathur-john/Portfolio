@@ -24,27 +24,23 @@ function HomePage() {
           </motion.div>
 
            <motion.h1
-               className="font-semibold leading-tight text-white"
+               className="font-semibold leading-tight text-white "
                style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
              >
-               Robotics Engineer <span className="font-normal text-zinc-400">designing</span>
-           </motion.h1>
-           <motion.h2
-             className="mt-1 font-normal text-zinc-400 leading-snug"
-             style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
-           >
+              Robotics Engineer <span className="font-normal" style={{fontSize: 'clamp(2rem, 6vw, 4rem)', color:'#a3a3a3'}}>designing</span>
+             
+              
                AI-powered intelligent systems
-           </motion.h2>
-
-           <motion.div
-            className="flex justify-center mt-10"
+            </motion.h1>
+          <motion.div
+            className="flex justify-center mt-8"
            >
               <a
                href="mailto:benharej@gmail.com"
-               className="inline-flex items-center gap-2 px-6 py-2 border border-white/30 rounded-full font-medium hover:bg-white hover:text-black transition-colors"
+               className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
              >
-               Contact me <ChevronRight className="w-4 h-4" />
-             </a>
+              Contact me
+</a>
            </motion.div>
          </div>
        </section>
