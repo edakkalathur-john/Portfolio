@@ -8,53 +8,6 @@ import {Skills} from './components/Skills';
 import {motion} from 'framer-motion';
 import Link from 'next/link';
 
-function HomePage() {
-  return (
-    <>
-      {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center justify-center bg-black text-white px-4">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-black" />
-        </div>
-        <div className="relative max-w-7xl mx-auto w-full text-center py-20">
-           <motion.div
-            className="inline-block bg-zinc-800 text-zinc-300 rounded-full px-4 py-2 mb-6"
-          >
-            Hello, I'm Benhar 👋
-          </motion.div>
-           <motion.h1
-              className="font-semibold leading-tight text-white"
-              style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
-            >
-              
-              Robotics Engineer <span className="font-normal text-gray-400" style={{fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400}}>designing</span>
-            </motion.h1>
-            <motion.h2
-              className="text-gray-400 text-[clamp(2rem,6vw,4rem)] font-normal leading-snug mt-2"
-              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400 }}
-            >
-              AI-powered intelligent systems
-            </motion.h2>
-          <motion.div
-            className="flex justify-center mt-8"
-           >
-              <a
-               href="mailto:benharej@gmail.com"
-               className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
-             >
-              Contact me <ChevronRight className="w-4 h-4" />
-            </a>
-           </motion.div>
-         </div>
-       </section>
-
-        <Education />
-        <Experience />
-        <Skills />
-      </>
-    );
-  }
-
 export default function App() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -92,9 +45,53 @@ export default function App() {
           </div>
         </nav>
       </header>
-
-      <HomePage />
-    </div>
-  );
-}
-
+<HomePage />
+      </div>
+    );
+  }
+  
+  function HomePage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="min-h-screen relative flex items-center justify-center bg-black text-white px-4 font-inter">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-black" />
+        </div>
+        <div className="relative max-w-5xl mx-auto w-full text-center py-20">
+           <motion.div
+             className="inline-block bg-zinc-800 text-zinc-300 rounded-full px-4 py-2 mb-6 text-sm"
+           >
+             Hello, I'm Benhar 🔥
+           </motion.div>
+            <motion.h1
+              className="font-semibold leading-tight text-white"
+              style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
+            >
+              Robotics Engineer <span className="font-normal" style={{color:'#a3a3a3'}}>designing</span>
+            </motion.h1>
+            <motion.h2
+              className="text-gray-400 font-normal leading-snug mt-1"
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
+            >
+              AI-powered intelligent systems
+            </motion.h2>
+          <motion.div
+            className="flex justify-center mt-8"
+           >
+              <a
+               href="mailto:benharej@gmail.com"
+               className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
+             >
+              Contact me <ChevronRight className="w-4 h-4" />
+            </a>
+           </motion.div>
+         </div>
+       </section>
+ 
+         <Education />
+         <Experience />
+         <Skills />
+       </>
+     );
+   }
