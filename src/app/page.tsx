@@ -18,44 +18,37 @@ function HomePage() {
         </div>
         <div className="relative max-w-5xl mx-auto w-full text-center py-20">
            <motion.div
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5}}
             className="inline-block bg-zinc-800 text-zinc-300 rounded-full px-4 py-2 mb-8"
           >
             Hello, I'm Benhar 👋
           </motion.div>
            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-bold leading-tight text-white"
-              style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
+              className="font-bold leading-tight text-white "
+              style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: '1.1' }}
             >
-              Robotics Engineer <span className="font-normal" style={{color:'#a3a3a3'}}>designing</span>
-            </motion.h1>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              Robotics Engineer <span className="font-normal text-zinc-400">designing</span>
+			  <br/>
+               <motion.h2
               className="text-zinc-400 leading-relaxed mt-2"
-              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400 }}
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400, lineHeight: '1.3' }}
             >
               AI-powered intelligent systems
             </motion.h2>
-          <motion.div
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5, delay: 0.6}}
-           className="flex justify-center mt-8"
-          >
-             <a
-              href="mailto:benharej@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
-            >
-              Email me <ChevronRight className="w-4 h-4" />
-            </a>
-          </motion.div>
+ 
+ 
+             
+            </motion.h1>
+ 
+           <motion.div
+            className="flex justify-center mt-8"
+           >
+              <a
+               href="mailto:benharej@gmail.com"
+               className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
+              >
+               Email me <ChevronRight className="w-4 h-4" />
+              </a>
+           </motion.div>
         </div>
       </section>
  
