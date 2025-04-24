@@ -58,7 +58,7 @@ export default function App() {
         <div className="hero-container">
           <div className="badge">Hello, I'm Benhar 🔥</div>
            <h1 className="hero-h1">
-              Robotics Engineer designing 
+              Robotics Engineer <span className="light-gray">designing</span>
             </h1>
             <h2 className="hero-subtext">AI-powered intelligent systems</h2>
             <a href="mailto:benharej@gmail.com" className="cta-button">Contact me →</a>
