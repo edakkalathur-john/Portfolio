@@ -117,17 +117,17 @@ body {
 
 .hero-h1 {
   font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.1;
   margin: 0;
 }
 
-.hero-bold-white {
+.bold-white {
   color: white;
-  font-weight: 700;
+  font-weight: 400;
 }
 
-.hero-light-gray {
+.light-gray {
   color: #a3a3a3;
   font-weight: 400;
   margin-left: 0.5rem;
