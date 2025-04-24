@@ -22,16 +22,19 @@ function HomePage() {
           >
             Hello, I'm Benhar 👋
           </motion.div>
-
            <motion.h1
-               className="font-semibold leading-tight text-white "
-               style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
-             >
-              Robotics Engineer <span className="font-normal" style={{fontSize: 'clamp(2rem, 6vw, 4rem)', color:'#a3a3a3'}}>designing</span>
-             
+              className="font-semibold leading-tight text-white"
+              style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}
+            >
               
-               AI-powered intelligent systems
+              Robotics Engineer <span className="font-normal text-gray-400" style={{fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400}}>designing</span>
             </motion.h1>
+            <motion.h2
+              className="text-gray-400 text-[clamp(2rem,6vw,4rem)] font-normal leading-snug mt-2"
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 400 }}
+            >
+              AI-powered intelligent systems
+            </motion.h2>
           <motion.div
             className="flex justify-center mt-8"
            >
@@ -39,8 +42,8 @@ function HomePage() {
                href="mailto:benharej@gmail.com"
                className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 rounded-full font-medium hover:bg-zinc-900 transition-colors"
              >
-              Contact me
-</a>
+              Contact me <ChevronRight className="w-4 h-4" />
+            </a>
            </motion.div>
          </div>
        </section>
@@ -94,3 +97,4 @@ export default function App() {
     </div>
   );
 }
+
