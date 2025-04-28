@@ -60,7 +60,7 @@ const projects = [
     description: "Advanced chatbot using natural language processing for customer service automation. Integrates with multiple platforms and handles complex conversations.",
     image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     tech: ["Python", "TensorFlow", "NLP", "FastAPI"],
-    icon: <Code className="w-6 h-6" />,
+     icon: <Code className="w-6 h-6" />,
     link: "/project/ai-chatbot"
   }
 ];
@@ -179,4 +179,3 @@ export default function HomePage() {
     </div>
   );
 }
-
