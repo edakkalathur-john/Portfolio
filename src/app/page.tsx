@@ -86,60 +86,58 @@ function HomePage() {
           <div className="absolute inset-0 bg-[#000000]" />
         </div>
         <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              className="inline-block px-4 py-2 rounded-full bg-zinc-900/50 backdrop-blur-sm mb-4 motion-reduce:transform-none"
+          <motion.div
+            className="inline-block px-4 py-2 rounded-full bg-zinc-900/50 backdrop-blur-sm mb-4 motion-reduce:transform-none"
+          >
+            <span className="text-white">Hello, I'm Benhar 👋</span>
+          </motion.div>
+          <motion.h1 
+            className="font-sans text-[clamp(3rem,8vw,5.5rem)] font-bold mb-6 text-white antialiased leading-tight"
+          >
+            Robotics Engineer designing
+          </motion.h1>
+          <motion.h2
+            className="font-sans text-[clamp(2rem,6vw,3rem)] font-bold text-[#a3a3a3] mb-8 antialiased"
+          >
+            AI-powered intelligent systems
+          </motion.h2>
+          <motion.div
+            className="flex justify-center gap-4 mb-12"
+          >
+            <a 
+              href="mailto:benharej@gmail.com"
+              className="p-2 bg-zinc-900/50 rounded-full hover:bg-zinc-800/50 transition-colors"
             >
-              <span className="text-white">Hello, I'm Benhar 👋</span>
-            </motion.div>
-            <motion.h1 
-              className="font-sans text-[clamp(3rem,8vw,5.5rem)] font-bold mb-6 text-white antialiased leading-tight"
+              <Mail className="w-6 h-6" />
+            </a>
+            <a 
+              href="https://linkedin.com/in/benhar-john"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-zinc-900/50 rounded-full hover:bg-zinc-800/50 transition-colors"
             >
-              Robotics Engineer designing
-            </motion.h1>
-            <motion.h2
-              className="font-sans text-[clamp(2rem,6vw,3rem)] font-bold text-[#a3a3a3] mb-8 antialiased"
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a 
+              href="https://github.com/BenharJohn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-zinc-900/50 rounded-full hover:bg-zinc-800/50 transition-colors"
             >
-              AI-powered intelligent systems
-            </motion.h2>
-            <motion.div
-              className="flex justify-center gap-4 mb-12"
+              <Github className="w-6 h-6" />
+            </a>
+          </motion.div>
+          <motion.div
+            className="relative z-10"
+          >
+            <a 
+              href="mailto:benharej@gmail.com"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-white rounded-full font-medium text-white hover:bg-white hover:text-black transition-all"
             >
-              <a 
-                href="mailto:benharej@gmail.com"
-                className="p-2 bg-zinc-900/50 rounded-full hover:bg-zinc-800/50 transition-colors"
-              >
-                <Mail className="w-6 h-6" />
-              </a>
-              <a 
-                href="https://linkedin.com/in/benhar-john"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-zinc-900/50 rounded-full hover:bg-zinc-800/50 transition-colors"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a 
-                href="https://github.com/BenharJohn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-zinc-900/50 rounded-full hover:bg-zinc-800/50 transition-colors"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-            </motion.div>
-            <motion.div
-              className="relative z-10"
-            >
-              <a 
-                href="mailto:benharej@gmail.com"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-white rounded-full font-medium text-white hover:bg-white hover:text-black transition-all"
-              >
-                Email me
-                <span className="text-lg">→</span>
-              </a>
-            </motion.div>
-          </div>
+              Email me
+              <span className="text-lg">→</span>
+            </a>
+          </motion.div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-96 pointer-events-none">
           <Scene />
@@ -198,39 +196,4 @@ function HomePage() {
   );
 }
 
-function App() {
-  const { scrollY } = useScroll();
-  const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
-
-  return (
-    <div className="min-h-screen bg-[#000000] text-white">
-      {/* Header */}
-      <motion.header 
-        style={{ opacity: headerOpacity }}
-        className="fixed top-0 w-full z-50 bg-[#000000]/80 backdrop-blur-sm border-b border-zinc-800"
-      >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="text-lg font-semibold">Benhar John</Link>
-          <div className="flex items-center gap-6">
-            <a href="https://github.com/BenharJohn" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">
-              <Github className="w-5 h-5" />
-            </a>
-            <a href="https://linkedin.com/in/benhar-john" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a href="mailto:benharej@gmail.com" className="hover:text-zinc-300 transition-colors">
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </nav>
-      </motion.header>
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/project/:id" element={<ProjectDetail />} />
-      </Routes>
-    </div>
-  );
-}
-
-export default App;
+export default HomePage;
