@@ -1,77 +1,149 @@
 'use client';
 
-import Header from './components/Header';
-import { Github, Mail, Linkedin, ChevronRight as ChessKnight, Hand, Notebook as Robot, Cloud, Box, Code } from 'lucide-react';
-import { Education } from './components/Education';
-import { Experience } from './components/Experience';
-import { Skills } from './components/Skills';
+import Header from '@/app/components/Header';
+import {
+  Github,
+  Mail,
+  Linkedin,
+  ChevronRight as ChessKnight,
+  Hand,
+  Notebook as Robot,
+  Cloud,
+  Box,
+  Code,
+} from 'lucide-react';
+import {motion} from 'framer-motion';
+import {Education} from '@/app/components/Education';
+import {Experience} from '@/app/components/Experience';
+import {Skills} from '@/app/components/Skills';
+import Link from 'next/link';
 
 const projects = [
-  { id: 1, title: 'Project 1', description: 'Description 1', tech: ['Tech 1', 'Tech 2'] },
-  { id: 2, title: 'Project 2', description: 'Description 2', tech: ['Tech 3', 'Tech 4'] },
+  {
+    id: 'chess-robot',
+    title: 'Project Arc: Autonomous Chess-Playing Robot',
+    description:
+      'Developed an autonomous robot designed to play chess using computer vision and deep learning techniques. Achieved 95% accuracy in move identification.',
+    image:
+      'https://images.pexels.com/photos/411195/pexels-photo-411195.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'YOLO', 'OpenCV', 'CNNs'],
+    icon: <ChessKnight className="w-6 h-6" />,
+    link: 'https://github.com/BenharJohn/chess-robot',
+  },
+  {
+    id: 'gesture-control',
+    title: 'Assistive Robot Control System',
+    description:
+      'A system for controlling a robotic arm through hand gestures, achieving 98% accuracy in real-time gesture recognition using MediaPipe.',
+    image:
+      'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['MediaPipe', 'Python', 'Machine Learning', '3D Printing'],
+    icon: <Hand className="w-6 h-6" />,
+    link: 'https://github.com/BenharJohn/gesture-control',
+  },
+  {
+    id: 'multi-robot-solar',
+    title: 'Multi-Robot Solar-Powered System',
+    description:
+      'Developed a cooperative multi-robot system with solar-powered UGVs and UAVs for efficient exploration and coverage. Implemented MARL for coordination and energy-aware path planning.',
+    image:
+      'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
+    icon: <Robot className="w-6 h-6" />,
+    link: 'https://github.com/BenharJohn/multi-robot-solar',
+  },
+  {
+    id: 'ur5-trajectory',
+    title: 'UR5 Trajectory Planning',
+    description:
+      'Advanced trajectory planning system for UR5 robotic arm, implementing smooth continuous motions using parametric equations and polynomial trajectories.',
+    image:
+      'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
+    icon: <Box className="w-6 h-6" />,
+    link: 'https://github.com/BenharJohn/trajectory_planning',
+  },
+  {
+    id: 'weather-forecasting',
+    title: 'Weather Forecasting System',
+    description:
+      'Advanced weather forecasting system using LSTM and SARIMA models for accurate predictions. Implemented ensemble learning for improved accuracy.',
+    image:
+      'https://images.pexels.com/photos/2448749/pexels-photo-2448749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas'],
+    icon: <Cloud className="w-6 h-6" />,
+    link: 'https://github.com/BenharJohn/weather-forecasting',
+  },
+  {
+    id: 'smart-home',
+    title: 'Smart Home Automation',
+    description:
+      'IoT-based home automation system with real-time monitoring and control capabilities. Features include temperature control, lighting automation, and security monitoring.',
+    image:
+      'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
+    icon: <Code className="w-6 h-6" />,
+    link: 'https://github.com/yourusername/smart-home',
+  },
 ];
 
 export default function HomePage() {
   return (
-    <div className="bg-white text-black dark:bg-[#101010] dark:text-white">
-      
-      <Header/>
-      <main className="container max-w-7xl mx-auto p-4">
-          {/* Top Honors and Tagline */}
-          <section className="mb-12 border-black/10 dark:border-white/10 p-4 border rounded-lg">
-            <h2 className="text-xl mb-2">
-              Award-winning robotics & AI engineer partnering with global teams to create captivating digital solutions.
-            </h2>
-            <div className="text-sm dark:text-zinc-400">
-              [ASU RISE LAB 2024]<br />
-              [4+ years in robotics]<br />
-              [AI/ML | ROS | Python]
-            </div>
-          </section>
-          {/* Hero */}
-          <section className="mb-12 flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 pr-8">
-              <h1 className="text-4xl font-bold mb-4">
-                Benhar John
-              </h1>
-              <h2 className="text-2xl mb-4 dark:text-zinc-400">Robotics Engineer & AI/ML Specialist</h2>
-              <div className="flex space-x-4 mb-6">
-                <Github className="hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-full p-2" />
-                <Mail className="hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-full p-2" />
-                <Linkedin className="hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-full p-2" />
-              </div>
-              <button className="bg-black dark:bg-white dark:text-black text-white px-6 py-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-800">
-                Book a Call
-              </button>
-            </div>
-            {/* Replace with 3D or image as needed */}
-            <div className="md:w-1/2 flex justify-center">
-              <div className="border-black/10 dark:border-white/10 p-4 border rounded-lg">[3D/Robot Visual]</div>
-            </div>
-          </section>
-          {/* Work Section */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Selected Work</h2>
-            <div className="space-y-4">
-              {projects.map(project => (
-                <div key={project.id} className="border-black/10 dark:border-white/10 p-4 border rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800">
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  <p className="text-sm dark:text-zinc-400">{project.tech.join(' / ')}</p>
-                  <p className="my-2">{project.description}</p>
-                  <a href="#" className="text-blue-600 hover:underline">View Project →</a>
+    <div className="min-h-screen bg-black text-white font-sans transition-colors duration-300">
+      <Header />
+      <main className="max-w-6xl mx-auto px-4 pt-16">
+        <div className="flex justify-between items-center mt-8 mb-12">
+          <div>Robotics Grad Student</div>
+
+          <div className="flex gap-4">
+            <a href="mailto:benharej@gmail.com" aria-label="Email">
+              <Mail className="w-6 h-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/benhar-john"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a
+              href="https://github.com/BenharJohn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Github"
+            >
+              <Github className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+        {/* Work Section */}
+        <section id="work" className="mb-24">
+          <h2 className="text-2xl font-bold mb-8 uppercase tracking-widest">
+            Selected Work
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map(project => (
+              <div
+                key={project.id}
+                className="border border-black/10 dark:border-white/10 rounded-lg p-6 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition"
+              >
+                <div className="flex items-center justify-between mb-2 text-xs font-mono uppercase text-zinc-500 dark:text-zinc-400">
+                  <span>{project.title}</span>
+                  <span>{project.tech.join(' / ')}</span>
                 </div>
-              ))}
-            </div>
-          </section>
-          {/* About/Experience/Skills Section */}
-          <section className='mb-12 space-y-4'>
-            <Education />
-            <Experience />
-            <Skills />
-          </section>
-          {/* Footer */}
-          <footer className='text-center'>© {new Date().getFullYear()} Benhar John</footer>
-        </main>
-      </div>
+                <div className="font-bold text-lg mb-1">{project.description}</div>
+                <Link
+                  href={`/project/${project.id}`}
+                  className="text-black underline text-xs dark:text-white"
+                >
+                  View Project →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
   );
 }
