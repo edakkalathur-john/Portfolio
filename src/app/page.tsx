@@ -1,26 +1,21 @@
 'use client';
 
-import Header from '@/app/components/Header';
 import {
   Github,
   Mail,
   Linkedin,
   ChevronRight as ChessKnight,
-  Hand,
-  Notebook as Robot,
-  Cloud,
-  Box,
-  Code,
 } from 'lucide-react';
 import {motion} from 'framer-motion';
 import {Education} from '@/app/components/Education';
 import {Experience} from '@/app/components/Experience';
 import {Skills} from '@/app/components/Skills';
 import Link from 'next/link';
+import Header from '@/app/components/Header'; // Added import for Header
 
 const projects = [
   {
-    id: 'chess-robot',
+    id: 'autonomous-chess-robot',
     title: 'Project Arc: Autonomous Chess-Playing Robot',
     description:
       'Developed an autonomous robot designed to play chess using computer vision and deep learning techniques. Achieved 95% accuracy in move identification.',
@@ -38,7 +33,7 @@ const projects = [
     image:
       'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tech: ['MediaPipe', 'Python', 'Machine Learning', '3D Printing'],
-    icon: <Hand className="w-6 h-6" />,
+    icon: <ChessKnight className="w-6 h-6" />,
     link: 'https://github.com/BenharJohn/gesture-control',
   },
   {
@@ -49,7 +44,7 @@ const projects = [
     image:
       'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
-    icon: <Robot className="w-6 h-6" />,
+    icon: <ChessKnight className="w-6 h-6" />,
     link: 'https://github.com/BenharJohn/multi-robot-solar',
   },
   {
@@ -60,7 +55,7 @@ const projects = [
     image:
       'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
-    icon: <Box className="w-6 h-6" />,
+    icon: <ChessKnight className="w-6 h-6" />,
     link: 'https://github.com/BenharJohn/trajectory_planning',
   },
   {
@@ -71,7 +66,7 @@ const projects = [
     image:
       'https://images.pexels.com/photos/2448749/pexels-photo-2448749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas'],
-    icon: <Cloud className="w-6 h-6" />,
+    icon: <ChessKnight className="w-6 h-6" />,
     link: 'https://github.com/BenharJohn/weather-forecasting',
   },
   {
@@ -82,68 +77,97 @@ const projects = [
     image:
       'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
-    icon: <Code className="w-6 h-6" />,
+    icon: <ChessKnight className="w-6 h-6" />,
     link: 'https://github.com/yourusername/smart-home',
   },
 ];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans transition-colors duration-300">
-      <Header />
-      <main className="max-w-6xl mx-auto px-4 pt-16">
-        <div className="flex justify-between items-center mt-8 mb-12">
-          <div>Robotics Grad Student</div>
-
-          <div className="flex gap-4">
-            <a href="mailto:benharej@gmail.com" aria-label="Email">
-              <Mail className="w-6 h-6" />
-            </a>
-            <a
-              href="https://linkedin.com/in/benhar-john"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-6 h-6" />
-            </a>
-            <a
-              href="https://github.com/BenharJohn"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Github"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-          </div>
-        </div>
-        {/* Work Section */}
-        <section id="work" className="mb-24">
-          <h2 className="text-2xl font-bold mb-8 uppercase tracking-widest">
-            Selected Work
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map(project => (
-              <div
-                key={project.id}
-                className="border border-black/10 dark:border-white/10 rounded-lg p-6 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition"
-              >
-                <div className="flex items-center justify-between mb-2 text-xs font-mono uppercase text-zinc-500 dark:text-zinc-400">
-                  <span>{project.title}</span>
-                  <span>{project.tech.join(' / ')}</span>
-                </div>
-                <div className="font-bold text-lg mb-1">{project.description}</div>
-                <Link
-                  href={`/project/${project.id}`}
-                  className="text-black underline text-xs dark:text-white"
+    <div className="bg-white text-black dark:bg-[#101010] dark:text-white">
+      
+      <Header/>
+      <main className="container max-w-7xl mx-auto p-4">
+          {/* About Me Section */}
+          <section className="mb-12 pt-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-lg md:text-xl font-geist-sans text-black dark:text-white leading-relaxed">
+                Graduate student specializing in AI and Machine Learning within Robotics and Autonomous Systems. I am proficient in Python, TensorFlow, PyTorch, and ROS for developing and deploying AI/ML solutions.
+              </p>
+            </div>
+            <div className="flex md:flex-col items-center justify-center md:items-end md:justify-start space-y-0 md:space-y-4 space-x-4 md:space-x-0">
+                <a href="mailto:benharej@gmail.com" aria-label="Email" className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
+                  <Mail className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/benhar-john"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
                 >
-                  View Project →
-                </Link>
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://github.com/BenharJohn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Github"
+                  className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+                >
+                  <Github className="w-6 h-6" />
+                </a>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          </section>
+
+          {/* 3D Model Placeholder and Contact */}
+          <section className="mb-12">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              
+              <div className="h-64 md:h-96 bg-zinc-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+                3D Model Placeholder
+              </div>
+              <div className="text-left md:text-right">
+                 {/* Content moved to About me section or can be a different call to action */}
+              </div>
+            </div>
+          </section>
+          
+          {/* Work Section */}
+          <section id="work" className="mb-24">
+            <h2 className="text-2xl font-bold mb-8 uppercase tracking-widest text-black dark:text-white">
+              Selected Work
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {projects.map(project => (
+                <div
+                  key={project.id}
+                  className="border border-black/10 dark:border-white/10 rounded-lg p-6 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition"
+                >
+                  <div className="flex items-center justify-between mb-2 text-xs font-mono uppercase text-zinc-500 dark:text-zinc-400">
+                    <span>{project.title}</span>
+                    <span>{project.tech.join(' / ')}</span>
+                  </div>
+                  <div className="font-bold text-lg mb-1 text-black dark:text-white">{project.description}</div>
+                  <Link
+                    href={`/project/${project.id}`}
+                    className="text-black underline text-xs dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300"
+                  >
+                    View Project →
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
+          <Education />
+          <Experience />
+          <Skills />
       </main>
+      <footer className='text-center py-8 text-sm text-zinc-500 dark:text-zinc-400 font-mono'>
+        © {new Date().getFullYear()} BENHAR JOHN
+      </footer>
     </div>
   );
 }
