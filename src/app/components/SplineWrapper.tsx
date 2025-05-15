@@ -1,72 +1,26 @@
 
 'use client';
 
-import React, { useState, useEffect, ComponentType } from 'react';
-
-interface SplineProps {
-  scene: string;
-  className?: string;
-  style?: React.CSSProperties;
-  // Add any other props that @splinetool/react-spline expects
-  onLoad?: (spline: any) => void; 
-}
+import React from 'react';
 
 interface SplineWrapperProps {
-  scene: string;
+  scene: string; // This will now be the src for the iframe
   className?: string;
   style?: React.CSSProperties;
 }
 
 const SplineWrapper: React.FC<SplineWrapperProps> = ({ scene, className, style }) => {
-  const [SplineComponent, setSplineComponent] = useState<ComponentType<SplineProps> | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let isMounted = true;
-    import('@splinetool/react-spline/next')
-      .then((module) => {
-        if (isMounted) {
-          // The module itself might be the default export, or it might have a named export 'Spline'
-          // Adjust based on how the library exports its Next.js component.
-          // Typically, it's a default export for the react-spline/next variant.
-          const ResolvedComponent = module.default || (module as any).Spline;
-          if (ResolvedComponent) {
-            setSplineComponent(() => ResolvedComponent as ComponentType<SplineProps>);
-          } else {
-            console.error("Spline component not found in module");
-            setError("Spline component not found in library module.");
-          }
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (isMounted) {
-          console.error("Failed to load Spline component:", err);
-          setError("Failed to load 3D model library.");
-          setIsLoading(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []); // Empty dependency array ensures this runs once on mount
-
-  if (isLoading) {
-    return <p className="text-center py-10">Loading 3D Model (Wrapper)...</p>;
-  }
-
-  if (error) {
-    return <p className="text-center py-10 text-red-500">{error}</p>;
-  }
-
-  if (!SplineComponent) {
-    // This case should ideally be covered by isLoading or error states
-    return <p className="text-center py-10">Spline component not available.</p>;
-  }
-
-  return <SplineComponent scene={scene} className={className} style={style} />;
+  // Basic iframe embedding
+  return (
+    <iframe
+      src={scene}
+      frameBorder="0"
+      className={className || "w-full h-full"} // Default to full width/height if no className
+      style={style}
+      title="Spline Scene"
+      allowFullScreen
+    />
+  );
 };
 
 export default SplineWrapper;
