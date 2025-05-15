@@ -19,6 +19,7 @@ const SplineWrapper: React.FC<SplineWrapperProps> = ({ scene, className, style }
       style={style}
       title="Spline Scene"
       allowFullScreen
+      allowTransparency={true} // Added this attribute
     />
   );
 };
