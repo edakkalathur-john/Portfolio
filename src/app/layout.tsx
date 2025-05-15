@@ -5,13 +5,9 @@ import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import { ThemeProvider } from './components/ThemeProvider';
 
-const geistSans = GeistSans({
-  variable: '--font-geist-sans',
-});
-
-const geistMono = GeistMono({
-  variable: '--font-geist-mono',
-});
+// GeistSans and GeistMono are imported as font definition objects.
+// We don't need to call them as functions here.
+// Their 'variable' property can be accessed directly.
 
 export const metadata: Metadata = {
   title: 'Portfolio Pro',
@@ -24,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="bg-background text-foreground font-mono antialiased">
         <ThemeProvider>
           {children}
