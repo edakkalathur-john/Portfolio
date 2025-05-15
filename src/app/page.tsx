@@ -10,8 +10,8 @@ import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
 import dynamic from 'next/dynamic'; // For client-side only components
 
-// Dynamically import Spline component for client-side rendering only
-const Spline = dynamic(() => import('@splinetool/react-spline/next').then((mod) => mod.default), {
+// Dynamically import SplineWrapper component for client-side rendering only
+const Spline = dynamic(() => import('@/app/components/SplineWrapper'), {
   ssr: false,
   loading: () => <p className="text-center py-10">Loading 3D Model...</p>,
 });
