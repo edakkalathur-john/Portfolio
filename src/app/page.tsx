@@ -8,14 +8,7 @@ import Header from '@/app/components/Header';
 import { Education } from '@/app/components/Education';
 import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
-import dynamic from 'next/dynamic'; // For client-side only components
-
-// Dynamically import SplineWrapper component for client-side rendering only
-const Spline = dynamic(() => import('@/app/components/SplineWrapper'), {
-  ssr: false,
-  loading: () => <p className="text-center py-10">Loading 3D Model...</p>,
-});
-
+import SplineWrapper from '@/app/components/SplineWrapper';
 
 const projects = [
   {
@@ -126,7 +119,7 @@ export default function HomePage() {
 
           {/* Central 3D Model */}
           <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
-             <Spline
+             <SplineWrapper
                 scene="https://my.spline.design/nexbotrobotcharacterconcept-Y2hVv0o07DLhT0Ijg69CWX4s/"
                 className="w-full h-full"
               />
