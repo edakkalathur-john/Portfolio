@@ -1,5 +1,7 @@
+
 'use client';
 
+import Header from '@/app/components/Header'; // Added import for Header
 import {
   Github,
   Mail,
@@ -11,7 +13,6 @@ import {Education} from '@/app/components/Education';
 import {Experience} from '@/app/components/Experience';
 import {Skills} from '@/app/components/Skills';
 import Link from 'next/link';
-import Header from '@/app/components/Header'; // Added import for Header
 
 const projects = [
   {
@@ -89,14 +90,14 @@ export default function HomePage() {
       <Header/>
       <main className="container max-w-7xl mx-auto p-4">
           {/* About Me Section */}
-          <section className="mb-12 pt-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="text-lg md:text-xl font-geist-sans text-black dark:text-white leading-relaxed">
+          <section className="mb-12 pt-8"> {/* Reduced top padding */}
+          <div className="grid md:grid-cols-3 gap-8 items-start"> {/* Changed to 3 cols, items-start for top alignment */}
+            <div className="md:col-span-2"> {/* Text takes 2/3 width on md screens */}
+              <p className="text-sm text-black dark:text-white"> {/* Reduced font size and ensured left alignment */}
                 Graduate student specializing in AI and Machine Learning within Robotics and Autonomous Systems. I am proficient in Python, TensorFlow, PyTorch, and ROS for developing and deploying AI/ML solutions.
               </p>
             </div>
-            <div className="flex md:flex-col items-center justify-center md:items-end md:justify-start space-y-0 md:space-y-4 space-x-4 md:space-x-0">
+            <div className="flex md:flex-col items-center justify-center md:items-end md:justify-start space-y-0 md:space-y-4 space-x-4 md:space-x-0"> {/* Social icons column */}
                 <a href="mailto:benharej@gmail.com" aria-label="Email" className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
                   <Mail className="w-6 h-6" />
                 </a>
@@ -171,3 +172,4 @@ export default function HomePage() {
     </div>
   );
 }
+
