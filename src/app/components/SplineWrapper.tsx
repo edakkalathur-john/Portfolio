@@ -30,14 +30,20 @@ const SplineWrapper: React.FC<SplineWrapperProps> = ({ scene, className, style }
           // The module itself might be the default export, or it might have a named export 'Spline'
           // Adjust based on how the library exports its Next.js component.
           // Typically, it's a default export for the react-spline/next variant.
-          setSplineComponent(() => module.default || (module as any).Spline); 
+          const ResolvedComponent = module.default || (module as any).Spline;
+          if (ResolvedComponent) {
+            setSplineComponent(() => ResolvedComponent as ComponentType<SplineProps>);
+          } else {
+            console.error("Spline component not found in module");
+            setError("Spline component not found in library module.");
+          }
           setIsLoading(false);
         }
       })
       .catch((err) => {
         if (isMounted) {
           console.error("Failed to load Spline component:", err);
-          setError("Failed to load 3D model.");
+          setError("Failed to load 3D model library.");
           setIsLoading(false);
         }
       });
@@ -45,7 +51,7 @@ const SplineWrapper: React.FC<SplineWrapperProps> = ({ scene, className, style }
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, []); // Empty dependency array ensures this runs once on mount
 
   if (isLoading) {
     return <p className="text-center py-10">Loading 3D Model (Wrapper)...</p>;
