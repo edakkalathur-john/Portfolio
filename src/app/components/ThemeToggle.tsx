@@ -12,15 +12,16 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    // Render a placeholder or null on the server and initial client render
-    // to avoid hydration mismatch. A div with matching size can prevent layout shift.
-    return <div className="h-4 w-4" />; 
+    // Render a placeholder to prevent layout shift and avoid hydration mismatch for the icon
+    // This div has the same size as the button's icon area.
+    return <div className="w-4 h-4" />; 
   }
 
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      type="button" // Explicitly set type for buttons
     >
       {theme === 'dark' ? <Sun className="h-4 w-4"/> : <Moon className="h-4 w-4"/>}
     </button>
