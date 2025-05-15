@@ -1,6 +1,4 @@
-
 'use client';
-
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Github, Mail, Linkedin, ArrowRight, Video, ChevronsDown, MessageSquare } from 'lucide-react';
@@ -8,6 +6,14 @@ import Header from '@/app/components/Header';
 import { Education } from '@/app/components/Education';
 import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
+import dynamic from 'next/dynamic'; // For client-side only components
+
+// Dynamically import Spline component for client-side rendering only
+const Spline = dynamic(() => import('@splinetool/react-spline/next').then((mod) => mod.default), {
+  ssr: false,
+  loading: () => <p className="text-center py-10">Loading 3D Model...</p>,
+});
+
 
 const projects = [
   {
@@ -18,18 +24,18 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'YOLO', 'OpenCV', 'CNNs'],
-    link: '#', // Updated to a valid placeholder
+    link: '#', 
     dataAiHint: 'chess robot'
   },
   {
-    id: 'assistive-robot-control', // Changed from 'gesture-control' to match projectData in ProjectDetail
+    id: 'assistive-robot-control', 
     title: 'Assistive Robot Control System',
     description:
       'A system for controlling a robotic arm through hand gestures, achieving 98% accuracy in real-time gesture recognition using MediaPipe.',
     image:
       'https://placehold.co/600x400.png',
     tech: ['MediaPipe', 'Python', 'Machine Learning', '3D Printing'],
-    link: '#', // Updated to a valid placeholder
+    link: '#', 
     dataAiHint: 'robotic arm'
   },
   {
@@ -40,7 +46,7 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
-    link: '#', // Updated to a valid placeholder
+    link: '#', 
     dataAiHint: 'solar robot'
   },
   {
@@ -51,7 +57,7 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
-    link: '#', // Updated to a valid placeholder
+    link: '#', 
     dataAiHint: 'robotic arm'
   },
   {
@@ -62,7 +68,7 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas'],
-    link: '#', // Updated to a valid placeholder
+    link: '#', 
     dataAiHint: 'weather forecast'
   },
   {
@@ -73,10 +79,14 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
-    link: '#', // Updated to a valid placeholder
+    link: '#', 
     dataAiHint: 'smart home'
   },
 ];
+
+// Metadata has been removed from here because this is a Client Component.
+// You'll need to manage metadata (e.g., title, description) in a Server Component,
+// such as by refactoring this page or using a Server Component in layout.tsx if possible.
 
 
 export default function HomePage() {
@@ -104,33 +114,24 @@ export default function HomePage() {
 
   return (
     <div className="bg-background text-foreground font-mono flex flex-col min-h-screen">
-      <Header activeNav={activeNav} />
+      <Header /> 
       
       <main className="flex-grow container max-w-7xl mx-auto px-4 py-8 md:py-16">
         
         <section className="grid md:grid-cols-[1fr_2fr_1fr] gap-x-4 lg:gap-x-8 items-start mb-16 md:mb-24 min-h-[calc(80vh)] md:min-h-[calc(100vh-200px)]">
           {/* Left Column: About Me */}
-          <div className="pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)] order-2 md:order-1 text-left"> {/* Added text-left */}
+          <div className="pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)] order-2 md:order-1 text-left"> 
             <p className="text-xs md:text-sm uppercase tracking-wider leading-relaxed max-w-md">
               Graduate student specializing in AI and Machine Learning within Robotics and Autonomous Systems. I am proficient in Python, TensorFlow, PyTorch, and ROS for developing and deploying AI/ML solutions.
             </p>
           </div>
 
-          {/* Central 3D Model Placeholder */}
-          <div className="flex-grow flex items-center justify-center p-4 lg:p-8 order-1 md:order-2 h-full">
-            <div
-              className="w-full h-64 md:h-96 lg:h-[500px] rounded-lg border border-zinc-700 overflow-hidden"
-            >
-              <iframe 
-                src='https://my.spline.design/nexbotrobotcharacterconcept-Y2hVv0o07DLhT0Ijg69CWX4s/' 
-                frameBorder='0' 
-                width='100%' 
-                height='100%'
-                title="3D Robot Model - Spline Scene"
-                className="block" // Ensures iframe behaves like a block element
-              ></iframe>
-            </div>
+          {/* Central 3D Model */}
+          <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
+             {/* The Spline component will be rendered here by next/dynamic */}
+            <Spline scene="https://prod.spline.design/Yd9-EEZSuzdkDtyk/scene.splinecode" className="w-full h-full" />
           </div>
+
 
           {/* Right Column: Social Links / Accolades */}
           <div className="pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)] flex flex-col items-start md:items-end space-y-1 text-xs uppercase tracking-wider order-3">

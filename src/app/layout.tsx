@@ -1,3 +1,4 @@
+'use client'; // Required because ThemeProvider is used
 
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
@@ -9,10 +10,8 @@ import { ThemeProvider } from './components/ThemeProvider';
 // We don't need to call them as functions here.
 // Their 'variable' property can be accessed directly.
 
-export const metadata: Metadata = {
-  title: 'Portfolio Pro',
-  description: 'AI/ML Robotics Portfolio',
-};
+// Metadata has been removed from here because 'use client' components cannot export metadata.
+// Please move your metadata export (title, description) to your src/app/page.tsx or another Server Component.
 
 export default function RootLayout({
   children,
@@ -20,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <body className="bg-background text-foreground font-mono antialiased">
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>
