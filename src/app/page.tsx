@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -126,7 +127,7 @@ export default function HomePage() {
           {/* Central 3D Model */}
           <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
              <Spline
-                scene="https://prod.spline.design/Yd9-EEZSuzdkDtyk/scene.splinecode"
+                scene="https://my.spline.design/nexbotrobotcharacterconcept-Y2hVv0o07DLhT0Ijg69CWX4s/"
                 className="w-full h-full"
               />
           </div>
