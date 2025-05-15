@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Github, Mail, Linkedin, ArrowRight, Video, ChevronsDown, MessageSquare } from 'lucide-react';
@@ -24,18 +25,18 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'YOLO', 'OpenCV', 'CNNs'],
-    link: '#', 
+    link: '/project/autonomous-chess-robot',
     dataAiHint: 'chess robot'
   },
   {
-    id: 'assistive-robot-control', 
+    id: 'assistive-robot-control',
     title: 'Assistive Robot Control System',
     description:
       'A system for controlling a robotic arm through hand gestures, achieving 98% accuracy in real-time gesture recognition using MediaPipe.',
     image:
       'https://placehold.co/600x400.png',
     tech: ['MediaPipe', 'Python', 'Machine Learning', '3D Printing'],
-    link: '#', 
+    link: '/project/assistive-robot-control',
     dataAiHint: 'robotic arm'
   },
   {
@@ -46,7 +47,7 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
-    link: '#', 
+    link: '/project/multi-robot-solar',
     dataAiHint: 'solar robot'
   },
   {
@@ -57,7 +58,7 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
-    link: '#', 
+    link: '/project/ur5-trajectory',
     dataAiHint: 'robotic arm'
   },
   {
@@ -68,7 +69,7 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas'],
-    link: '#', 
+    link: '/project/weather-forecasting',
     dataAiHint: 'weather forecast'
   },
   {
@@ -79,14 +80,10 @@ const projects = [
     image:
       'https://placehold.co/600x400.png',
     tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
-    link: '#', 
+    link: '/project/smart-home',
     dataAiHint: 'smart home'
   },
 ];
-
-// Metadata has been removed from here because this is a Client Component.
-// You'll need to manage metadata (e.g., title, description) in a Server Component,
-// such as by refactoring this page or using a Server Component in layout.tsx if possible.
 
 
 export default function HomePage() {
@@ -107,20 +104,20 @@ export default function HomePage() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
 
   return (
     <div className="bg-background text-foreground font-mono flex flex-col min-h-screen">
-      <Header /> 
-      
+      <Header />
+
       <main className="flex-grow container max-w-7xl mx-auto px-4 py-8 md:py-16">
-        
-        <section className="grid md:grid-cols-[1fr_2fr_1fr] gap-x-4 lg:gap-x-8 items-start mb-16 md:mb-24 min-h-[calc(80vh)] md:min-h-[calc(100vh-200px)]">
+
+        <section className="grid md:grid-cols-[1fr_auto_1fr] gap-x-4 lg:gap-x-8 items-start mb-16 md:mb-24 min-h-[calc(80vh)] md:min-h-[calc(100vh-200px)]">
           {/* Left Column: About Me */}
-          <div className="pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)] order-2 md:order-1 text-left"> 
+          <div className="pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)] order-2 md:order-1 text-left">
             <p className="text-xs md:text-sm uppercase tracking-wider leading-relaxed max-w-md">
               Graduate student specializing in AI and Machine Learning within Robotics and Autonomous Systems. I am proficient in Python, TensorFlow, PyTorch, and ROS for developing and deploying AI/ML solutions.
             </p>
@@ -128,14 +125,16 @@ export default function HomePage() {
 
           {/* Central 3D Model */}
           <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
-             {/* The Spline component will be rendered here by next/dynamic */}
-            <Spline scene="https://prod.spline.design/Yd9-EEZSuzdkDtyk/scene.splinecode" className="w-full h-full" />
+             <Spline
+                scene="https://prod.spline.design/Yd9-EEZSuzdkDtyk/scene.splinecode"
+                className="w-full h-full"
+              />
           </div>
 
 
           {/* Right Column: Social Links / Accolades */}
           <div className="pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)] flex flex-col items-start md:items-end space-y-1 text-xs uppercase tracking-wider order-3">
-            <div className="flex items-center">
+             <div className="flex items-center">
               <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-2"></span>
               <span>[YOUR ACCOMPLISHMENT]</span>
             </div>
@@ -164,7 +163,7 @@ export default function HomePage() {
             </a>
           </div>
         </section>
-          
+
         {/* Work Section */}
         <section id="work" className="mb-16 md:mb-24 scroll-mt-20">
           <h2 className="text-xl md:text-2xl font-bold mb-8 uppercase tracking-widest">
@@ -172,14 +171,14 @@ export default function HomePage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map(project => (
-              <Link href={`/project/${project.id}`} key={project.id} className="block group">
+              <Link href={project.link || `/project/${project.id}`} key={project.id} className="block group">
                 <div
                   className="border border-foreground/10 rounded-lg p-4 md:p-6 bg-background hover:bg-foreground/5 transition-colors h-full flex flex-col"
                 >
                   <div className="relative w-full h-48 mb-4 rounded overflow-hidden">
-                    <img 
-                        src={project.image} 
-                        alt={project.title} 
+                    <img
+                        src={project.image}
+                        alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         data-ai-hint={project.dataAiHint}
                     />
@@ -203,7 +202,7 @@ export default function HomePage() {
           <Skills />
         </section>
       </main>
-      
+
       <footer id="contact" className="container max-w-7xl mx-auto px-4 py-8 text-xs uppercase tracking-wider font-mono border-t border-black/10 dark:border-white/10 flex justify-between items-center scroll-mt-20">
         <a href="#" className="hover:opacity-75 transition-opacity flex items-center">
           <Video className="w-4 h-4 mr-2"/> [VIDEO TITLE] [00:00] [WATCH] <ArrowRight className="w-3 h-3 ml-1 inline-block transform -rotate-45"/>
