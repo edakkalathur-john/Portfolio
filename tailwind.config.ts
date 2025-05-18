@@ -13,6 +13,15 @@ export default {
           fontFamily: {
             sans: ['var(--font-geist-sans)', 'sans-serif'],
             mono: ['var(--font-geist-mono)', 'monospace'],
+            display: ['var(--font-display)', 'sans-serif'], // Added Space Grotesk
+          },
+          fontSize: {
+            '5xl': ['3rem', { lineHeight: '1.1' }],
+            '6xl': ['4rem', { lineHeight: '1.05' }],
+          },
+          spacing: {
+            hero: '6rem',
+            projects: '3rem',
           },
   		colors: {
   			background: 'hsl(var(--background))',
