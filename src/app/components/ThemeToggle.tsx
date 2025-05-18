@@ -1,17 +1,37 @@
 'use client';
+
+import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon } from 'lucide-react';
-import type { useEffect, useState } from 'react'; // These imports are not used but were in existing file.
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // On the server, or before hydration, render a placeholder or nothing
+    // to prevent mismatch. A button shell helps maintain layout.
+    return <button aria-label="Toggle theme" className="p-2" />;
+  }
+
+  // resolvedTheme will be 'light' or 'dark' once mounted
+  const current = resolvedTheme || theme;
+
   return (
     <button
       aria-label="Toggle dark mode"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => setTheme(current === 'dark' ? 'light' : 'dark')}
       className="p-2"
     >
-      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      {current === 'dark' ? (
+        <Sun size={20} className="lucide lucide-sun" />
+      ) : (
+        <Moon size={20} className="lucide lucide-moon" />
+      )}
     </button>
   );
 }
