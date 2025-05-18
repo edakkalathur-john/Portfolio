@@ -1,14 +1,20 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Github, Mail, Linkedin, ArrowRight, Video, ChevronsDown, MessageSquare } from 'lucide-react';
 import Header from '@/app/components/Header';
 import { Education } from '@/app/components/Education';
 import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
-import SplineWrapper from '@/app/components/SplineWrapper';
+// import Spline from '@splinetool/react-spline/next'; // We use dynamic import for the wrapper
+
+const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
+  ssr: false,
+  loading: () => <p>Loading 3D model...</p>,
+});
+
 
 const projects = [
   {
@@ -81,28 +87,6 @@ const projects = [
 
 
 export default function HomePage() {
-  const [activeNav, setActiveNav] = useState('work');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['work', 'about', 'contact'];
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element && element.offsetTop <= scrollPosition && element.offsetTop + element.offsetHeight > scrollPosition) {
-          setActiveNav(sectionId);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-
   return (
     <div className="bg-background text-foreground font-mono flex flex-col min-h-screen">
       <Header />
@@ -120,7 +104,7 @@ export default function HomePage() {
           {/* Central 3D Model */}
           <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
              <SplineWrapper
-                scene="https://my.spline.design/nexbotrobotcharacterconcept-Y2hVv0o07DLhT0Ijg69CWX4s/"
+                scene="https://prod.spline.design/Yd9-EEZSuzdkDtyk/scene.splinecode"
                 className="w-full h-full"
               />
           </div>
