@@ -16,7 +16,6 @@ import Header from '@/app/components/Header';
 import { Education } from '@/app/components/Education';
 import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
-// import { Spline } from '@splinetool/react-spline';
 
 // Dynamically import SplineWrapper only on the client side
 const SplineWrapper = dynamic(
@@ -102,26 +101,26 @@ export default function HomePage() {
                       mb-hero md:mb-hero min-h-[80vh]"
         >
           {/* Left Column: About Me */}
-          <div className="order-2 md:order-1 pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)]">
+          <div className="order-2 md:order-1"> {/* Removed specific pt- padding */}
             <p
               className="font-display text-xs font-bold uppercase tracking-widest
                          leading-relaxed max-w-md"
             >
-              Graduate student specializing in AI and Machine Learning within Robotics and Autonomous Systems. Proficient in Python, TensorFlow, PyTorch, and ROS.
+              GRADUATE STUDENT SPECIALIZING IN AI AND MACHINE LEARNING WITHIN ROBOTICS AND AUTONOMOUS SYSTEMS. PROFICIENT IN PYTHON, TENSORFLOW, PYTORCH, AND ROS.
             </p>
           </div>
 
           {/* Central 3D Model */}
           <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
              <SplineWrapper
-              scene="/models/scene.splinecode" // Ensure this path is correct for your local file in /public/models/
+              scene="/models/scene.splinecode" 
               className="w-full h-full"
             />
           </div>
 
           {/* Right Column: Social Links / Accolades */}
           <div
-            className="order-3 md:order-3 pt-0 md:pt-[calc(var(--header-height,_4rem)+2rem)]
+            className="order-3 md:order-3 
                           flex flex-col items-start md:items-end space-y-1 text-xs uppercase tracking-widest"
           >
             <div className="flex items-center">
@@ -223,7 +222,7 @@ export default function HomePage() {
         <a
           href="mailto:benharej@gmail.com"
           className="flex items-center bg-foreground text-background px-3 py-1.5 rounded-full
-                     hover:opacity-75 transition-opacity"
+                     hover:opacity-75 transition-opacity transition duration-300"
         >
           <img
             src="https://placehold.co/24x24.png"
