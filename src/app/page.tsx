@@ -22,7 +22,7 @@ const SplineWrapper = dynamic(
   () => import('@/app/components/SplineWrapper'),
   {
     ssr: false,
-    loading: () => <p className="text-center">Loading 3D model...</p>,
+    loading: () => <p className="text-center text-sm uppercase tracking-widest">Loading 3D model...</p>,
   }
 );
 
@@ -94,26 +94,20 @@ export default function HomePage() {
     <div className="bg-white text-black font-display flex flex-col min-h-screen dark:bg-black dark:text-white">
       <Header />
 
-      <main className="flex-grow container max-w-7xl mx-auto px-4 py-8 md:py-16">
+      <main className="flex-grow container max-w-7xl mx-auto px-4 pt-4 pb-8 md:pb-16">
         {/* Hero Section */}
         <section
-          className="grid md:grid-cols-[1fr_auto_1fr] gap-x-8 items-start
-                      mb-hero md:mb-hero min-h-[80vh]"
+          className="grid md:grid-cols-[1fr_auto_1fr] gap-x-8 items-start mb-hero md:mb-hero min-h-[80vh]"
         >
           {/* Left Column: About Me */}
-          <div className="order-2 md:order-1"> {/* Removed specific pt- padding */}
-            <p
-              className="font-display text-xs font-bold uppercase tracking-widest
-                         leading-relaxed max-w-md"
-            >
-              GRADUATE STUDENT SPECIALIZING IN AI AND MACHINE LEARNING WITHIN ROBOTICS AND AUTONOMOUS SYSTEMS. PROFICIENT IN PYTHON, TENSORFLOW, PYTORCH, AND ROS.
-            </p>
+          <div className="order-2 md:order-1 text-xs font-bold uppercase tracking-widest">
+            GRADUATE STUDENT SPECIALIZING IN AI AND MACHINE LEARNING WITHIN ROBOTICS AND AUTONOMOUS SYSTEMS. PROFICIENT IN PYTHON, TENSORFLOW, PYTORCH, AND ROS.
           </div>
 
           {/* Central 3D Model */}
           <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
              <SplineWrapper
-              scene="/models/scene.splinecode" 
+              scene="/models/scene.splinecode"
               className="w-full h-full"
             />
           </div>
@@ -183,7 +177,7 @@ export default function HomePage() {
                   <span className="text-sm uppercase text-foreground/60 mb-2 tracking-widest">
                     {proj.title}
                   </span>
-                  <p className="text-base text-foreground/80 flex-grow mb-3 tracking-widest">
+                  <p className="text-sm text-foreground/80 flex-grow mb-3 tracking-widest">
                     {proj.description}
                   </p>
                   <div
