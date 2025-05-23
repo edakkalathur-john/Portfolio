@@ -1,25 +1,23 @@
+
 'use client';
 
-import dynamic from 'next/dynamic';
 import React, { CSSProperties } from 'react';
-import type { SplineProps } from '@splinetool/react-spline';
+import Spline from '@splinetool/react-spline/next';
 
 interface SplineWrapperProps {
-  scene: string;
+  scene: string; // Path to the .splinecode file, e.g., /models/scene.splinecode
   className?: string;
   style?: CSSProperties;
 }
 
-const Spline = dynamic<SplineProps>(
-  () => import('@splinetool/react-spline').then((mod) => mod.default),
-  {
-    ssr: false,
-    loading: () => <p>Loading 3D model…</p>,
-    // You can also catch errors via an ErrorBoundary if desired
-  }
-);
-
 const SplineWrapper: React.FC<SplineWrapperProps> = ({ scene, className, style }) => {
+  if (!scene) {
+    return <p className="text-center text-red-500">Spline scene not provided.</p>;
+  }
+
+  // The Spline component from '@splinetool/react-spline/next'
+  // should handle loading local .splinecode files if they are correctly
+  // placed in the /public directory and the path is correct.
   return <Spline scene={scene} className={className} style={style} />;
 };
 
