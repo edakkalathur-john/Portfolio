@@ -1,11 +1,13 @@
-'use client'; // Still needed if ThemeProvider itself makes this a client boundary, or for font variables if re-enabled.
-
-import { ThemeProvider as NextThemesProvider } from 'next-themes'; // Import directly from next-themes
-import './globals.css';
-// Assuming GeistSans and GeistMono are not strictly needed on <html> if body uses font-display
-// If you still need them for other parts of the app, ensure they are correctly imported and configured.
+'use client';
+import type { Metadata } from 'next';
+// Removed Geist font imports as they were causing issues and system fonts are used as fallback.
 // import { GeistSans } from 'geist/font/sans';
 // import { GeistMono } from 'geist/font/mono';
+import './globals.css';
+import { ThemeProvider } from 'next-themes'; // Using next-themes directly
+
+// Metadata export works best from Server Components.
+// If RootLayout must be 'use client', consider moving metadata to a parent Server Component or page.tsx
 
 export default function RootLayout({
   children,
@@ -13,18 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // className on html can be used for global font variables if needed, e.g.
+    // Apply font variables if Geist fonts are re-introduced and working:
     // className={`${GeistSans.variable} ${GeistMono.variable}`}
     <html lang="en" suppressHydrationWarning>
-      <body className="font-display bg-white text-black dark:bg-black dark:text-white antialiased" suppressHydrationWarning>
-        <NextThemesProvider
-          attribute="class"
-          defaultTheme="light"
-          // enableSystem={false} // Temporarily removed for simplification
-          // disableTransitionOnChange // Temporarily removed for simplification
-        >
+      <body className="bg-background text-foreground font-display tracking-widest antialiased" suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           {children}
-        </NextThemesProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
