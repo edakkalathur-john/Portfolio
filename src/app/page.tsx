@@ -1,3 +1,4 @@
+// app/page.jsx or HomePage.jsx
 
 'use client';
 
@@ -10,223 +11,132 @@ import {
   ArrowRight,
   Video,
   ChevronsDown,
+  Sun,
 } from 'lucide-react';
 
-import Header from '@/app/components/Header';
 import { Education } from '@/app/components/Education';
 import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
 
-// Dynamically import SplineWrapper only on the client side
-const SplineWrapper = dynamic(
-  () => import('@/app/components/SplineWrapper'),
-  {
-    ssr: false,
-    loading: () => <p className="text-center text-sm uppercase tracking-widest">Loading 3D model...</p>,
-  }
-);
+// Dynamically load SplineWrapper on client only
+const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
+  ssr: false,
+  loading: () => (
+    <p className="text-sm font-['Space_Mono',monospace] uppercase tracking-wide">
+      Loading 3D model...
+    </p>
+  ),
+});
 
 const projects = [
-  {
-    id: 'autonomous-chess-robot',
-    title: 'Project Arc: Autonomous Chess-Playing Robot',
-    description:
-      'Developed an autonomous robot designed to play chess using computer vision and deep learning techniques. Achieved 95% accuracy in move identification.',
-    image: 'https://placehold.co/600x400.png',
-    tech: ['Python', 'YOLO', 'OpenCV', 'CNNs'],
-    link: '/project/autonomous-chess-robot',
-    dataAiHint: 'chess robot',
-  },
-  {
-    id: 'gesture-control',
-    title: 'Assistive Robot Control System',
-    description:
-      'A system for controlling a robotic arm through hand gestures, achieving 98% accuracy in real-time gesture recognition using MediaPipe.',
-    image: 'https://placehold.co/600x400.png',
-    tech: ['Python', 'Machine Learning', '3D Printing'],
-    link: '/project/assistive-robot-control',
-    dataAiHint: 'gesture control',
-  },
-  {
-    id: 'multi-robot-solar',
-    title: 'Multi-Robot Solar-Powered System',
-    description:
-      'Developed a cooperative multi-robot system with solar-powered UGVs and UAVs for efficient exploration and coverage. Implemented MARL for coordination and energy-aware path planning.',
-    image: 'https://placehold.co/600x400.png',
-    tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
-    link: '/project/multi-robot-solar',
-    dataAiHint: 'robot solar',
-  },
-  {
-    id: 'ur5-trajectory',
-    title: 'UR5 Trajectory Planning',
-    description:
-      'Advanced trajectory planning system for UR5 robotic arm, implementing smooth continuous motions using parametric equations and polynomial trajectories.',
-    image: 'https://placehold.co/600x400.png',
-    tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
-    link: '/project/ur5-trajectory',
-    dataAiHint: 'robot arm',
-  },
-  {
-    id: 'weather-forecasting',
-    title: 'Weather Forecasting System',
-    description:
-      'Advanced weather forecasting system using LSTM and SARIMA models for accurate predictions. Implemented ensemble learning for improved accuracy.',
-    image: 'https://placehold.co/600x400.png',
-    tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas'],
-    link: '/project/weather-forecasting',
-    dataAiHint: 'weather forecast',
-  },
-  {
-    id: 'smart-home',
-    title: 'Smart Home Automation',
-    description:
-      'IoT-based home automation system with real-time monitoring and control capabilities. Features include temperature control, lighting automation, and security monitoring.',
-    image: 'https://placehold.co/600x400.png',
-    tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
-    link: '/project/smart-home',
-    dataAiHint: 'smart home',
-  },
+  // ...project entries...
 ];
 
 export default function HomePage() {
   return (
-    <div className="bg-white text-black font-display flex flex-col min-h-screen dark:bg-black dark:text-white">
-      <Header />
+    <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white font-['Space_Mono',monospace]">
 
-      <main className="flex-grow container max-w-7xl mx-auto px-4 pt-4 pb-8 md:pb-16">
+      {/* Site Header */}
+      <header>
+        <div className="w-full flex items-center justify-between py-4">
+          <div className="text-lg uppercase tracking-wide pl-4">[BENHAR JOHN]</div>
+          <nav className="hidden md:flex space-x-16 uppercase tracking-wide text-sm">
+            <Link href="#work">WORK ©</Link>
+            <Link href="#about">ABOUT</Link>
+            <Link href="#contact">REACH OUT</Link>
+          </nav>
+          <div className="flex items-center space-x-4 uppercase tracking-wide text-sm pr-4">
+            <span className="bg-yellow-300 text-black px-4 py-1 rounded-full">MEL [AU] 06:46 PM</span>
+            <button aria-label="Toggle dark mode"><Sun className="w-6 h-6" /></button>
+          </div>
+        </div>
+      </header>
+
+      <main className="flex-grow">
         {/* Hero Section */}
-        <section
-          className="grid md:grid-cols-[1fr_auto_1fr] gap-x-8 items-start mb-hero md:mb-hero min-h-[80vh]"
-        >
-          {/* Left Column: About Me */}
-          <div className="order-2 md:order-1 text-xs font-bold uppercase tracking-widest">
-            GRADUATE STUDENT SPECIALIZING IN AI AND MACHINE LEARNING WITHIN ROBOTICS AND AUTONOMOUS SYSTEMS. PROFICIENT IN PYTHON, TENSORFLOW, PYTORCH, AND ROS.
-          </div>
+        <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] items-start justify-items-center gap-12 lg:gap-24 min-h-[80vh] w-full">
 
-          {/* Central 3D Model */}
-          <div className="w-full h-64 md:h-96 lg:h-[500px] order-1 md:order-2 flex items-center justify-center">
-             <SplineWrapper
-              scene="/models/scene.splinecode"
-              className="w-full h-full"
-            />
-          </div>
-
-          {/* Right Column: Social Links / Accolades */}
-          <div
-            className="order-3 md:order-3 
-                          flex flex-col items-start md:items-end space-y-1 text-xs uppercase tracking-widest"
-          >
-            <div className="flex items-center">
-              <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-2 shrink-0" />
-              <span>[YOUR ACCOMPLISHMENT]</span>
+          {/* Left: About Me */}
+          <div className="justify-self-start w-full max-w-sm text-sm uppercase tracking-wide pl-4">
+            <div className="p-6 bg-white/20 dark:bg-black/60 rounded-lg leading-relaxed">
+              Graduate student specializing in AI and machine learning within robotics and autonomous systems. Proficient in Python, TensorFlow, PyTorch, and ROS.
             </div>
-            <span>[YOUR SKILL / INFO]</span>
-            <span>[ANOTHER PIECE OF INFO]</span>
+          </div>
 
-            <a
-              href="mailto:benharej@gmail.com"
-              className="mt-4 flex items-center hover:opacity-75 transition-opacity"
-            >
-              <Mail className="w-3 h-3 mr-2 opacity-70 shrink-0" /> benharej@gmail.com
+          {/* Center: Model with Overlapping Title */}
+          <div className="relative justify-self-center w-full max-w-3xl h-[600px] flex items-center justify-center">
+            {/* Background Title */}
+            <h1 className="absolute top-1/2 transform -translate-y-1/2 text-6xl md:text-8xl lg:text-9xl font-extrabold text-gray-200 dark:text-gray-800 whitespace-nowrap z-0">
+              Robotics Engineer
+            </h1>
+            {/* 3D Model on top */}
+            <div className="relative z-10 w-full h-full">
+              <SplineWrapper scene="/models/scene.splinecode" className="w-full h-full" />
+            </div>
+          </div>
+
+          {/* Right: Contact Icons */}
+          <div className="justify-self-end w-full max-w-sm flex flex-col items-end space-y-4 text-sm uppercase tracking-wide pr-4">
+            <a href="mailto:benharej@gmail.com" className="flex items-center hover:opacity-80">
+              <Mail className="w-5 h-5 mr-3" /> benharej@gmail.com
             </a>
-            <a
-              href="https://linkedin.com/in/benhar-john"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center hover:opacity-75 transition-opacity"
-            >
-              <Linkedin className="w-3 h-3 mr-2 opacity-70 shrink-0" /> LinkedIn
+            <a href="https://linkedin.com/in/benhar-john" className="flex items-center hover:opacity-80" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="w-5 h-5 mr-3" /> LinkedIn
             </a>
-            <a
-              href="https://github.com/BenharJohn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center hover:opacity-75 transition-opacity"
-            >
-              <Github className="w-3 h-3 mr-2 opacity-70 shrink-0" /> GitHub
+            <a href="https://github.com/BenharJohn" className="flex items-center hover:opacity-80" target="_blank" rel="noopener noreferrer">
+              <Github className="w-5 h-5 mr-3" /> GitHub
             </a>
           </div>
+
         </section>
 
-        {/* Projects */}
-        <section id="work" className="mb-projects md:mb-projects scroll-mt-20">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 uppercase tracking-widest">
-            Selected Work ©
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((proj) => (
-              <Link
-                href={proj.link || '#'}
-                key={proj.id}
-                className="block group"
-              >
-                <div
-                  className="border border-foreground/10 rounded-lg p-6 bg-background
-                                hover:bg-foreground/5 transition-colors flex flex-col h-full"
-                >
-                  <div className="relative w-full h-48 mb-4 overflow-hidden rounded">
-                    <img
-                      src={proj.image}
-                      alt={proj.title}
-                      className="w-full h-full object-cover transition-transform
-                                 duration-300 group-hover:scale-105"
-                      data-ai-hint={proj.dataAiHint}
-                    />
+        {/* Main Content Container */}
+        <div className="max-w-7xl mx-auto px-4 py-12 space-y-20">
+          {/* Projects Section */}
+          <section id="work" className="space-y-10">
+            <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wide">
+              Selected Work ©
+            </h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              {projects.map((proj) => (
+                <Link href={proj.link} key={proj.id} className="group">
+                  <div className="border border-gray-300 dark:border-gray-700 rounded-lg p-8 hover:bg-gray-100 dark:hover:bg-gray-900 transition flex flex-col h-full">
+                    <div className="relative w-full h-56 overflow-hidden rounded mb-6">
+                      <img src={proj.image} alt={proj.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    </div>
+                    <span className="uppercase tracking-wide text-base text-gray-500 dark:text-gray-400 mb-3">{proj.title}</span>
+                    <p className="text-gray-700 dark:text-gray-300 flex-grow mb-6">{proj.description}</p>
+                    <div className="uppercase tracking-wide flex items-center text-gray-600 dark:text-gray-500 group-hover:text-gray-800 transition-colors">
+                      View Project <ArrowRight className="w-5 h-5 ml-3" />
+                    </div>
                   </div>
-                  <span className="text-sm uppercase text-foreground/60 mb-2 tracking-widest">
-                    {proj.title}
-                  </span>
-                  <p className="text-sm text-foreground/80 flex-grow mb-3 tracking-widest">
-                    {proj.description}
-                  </p>
-                  <div
-                    className="text-sm uppercase tracking-widest flex items-center
-                                  text-foreground/80 group-hover:text-foreground"
-                  >
-                    View Project <ArrowRight className="w-3 h-3 ml-1 shrink-0" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+                </Link>
+              ))}
+            </div>
+          </section>
 
-        {/* About / Resume Sections */}
-        <section id="about" className="scroll-mt-20">
-          <Education />
-          <Experience />
-          <Skills />
-        </section>
+          {/* About & Resume Section */}
+          <section id="about" className="space-y-12">
+            <Education />
+            <Experience />
+            <Skills />
+          </section>
+        </div>
       </main>
 
-      {/* Footer / Contact CTA */}
-      <footer
-        id="contact"
-        className="container max-w-7xl mx-auto px-4 py-8 text-xs uppercase tracking-widest
-                   font-display border-t border-black/10 dark:border-white/10 flex justify-between items-center"
-      >
-        <a href="#" className="flex items-center hover:opacity-75 transition-opacity">
-          <Video className="w-4 h-4 mr-2 shrink-0" /> [VIDEO TITLE] [00:00] WATCH{' '}
-          <ArrowRight className="w-3 h-3 ml-1 inline-block transform -rotate-45 shrink-0" />
+      {/* Footer */}
+      <footer className="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center uppercase tracking-wide text-sm">
+        <a href="#" className="flex items-center hover:opacity-80">
+          <Video className="w-5 h-5 mr-3" /> [VIDEO TITLE] [00:00] WATCH <ArrowRight className="w-5 h-5 ml-3 transform -rotate-45" />
         </a>
-        <div className="hover:opacity-75 transition-opacity">
-          SCROLL <ChevronsDown className="w-4 h-4 inline-block animate-bounce shrink-0" />
+        <div className="hover:opacity-80 flex items-center space-x-3">
+          <span>SCROLL</span> <ChevronsDown className="w-5 h-5 animate-bounce" />
         </div>
-        <a
-          href="mailto:benharej@gmail.com"
-          className="flex items-center bg-foreground text-background px-3 py-1.5 rounded-full
-                     hover:opacity-75 transition-opacity transition duration-300"
-        >
-          <img
-            src="https://placehold.co/24x24.png"
-            alt="User Avatar"
-            className="w-4 h-4 rounded-full mr-2 shrink-0"
-            data-ai-hint="avatar person"
-          />
+        <a href="mailto:benharej@gmail.com" className="flex items-center bg-black text-white px-8 py-3 rounded-full hover:opacity-80">
           BOOK A CALL
         </a>
       </footer>
     </div>
   );
 }
+
