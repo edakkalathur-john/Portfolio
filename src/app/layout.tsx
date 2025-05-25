@@ -1,6 +1,6 @@
 'use client'; // Still needed if ThemeProvider itself makes this a client boundary, or for font variables if re-enabled.
 
-import { ThemeProvider } from './components/ThemeProvider'; // Use your custom wrapper
+import { ThemeProvider as NextThemesProvider } from 'next-themes'; // Import directly from next-themes
 import './globals.css';
 // Assuming GeistSans and GeistMono are not strictly needed on <html> if body uses font-display
 // If you still need them for other parts of the app, ensure they are correctly imported and configured.
@@ -17,14 +17,14 @@ export default function RootLayout({
     // className={`${GeistSans.variable} ${GeistMono.variable}`}
     <html lang="en" suppressHydrationWarning>
       <body className="font-display bg-white text-black dark:bg-black dark:text-white antialiased" suppressHydrationWarning>
-        <ThemeProvider
+        <NextThemesProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem={false} // Set to false if you want defaultTheme to always take precedence
-          disableTransitionOnChange // Prevents flashes on theme change
+          // enableSystem={false} // Temporarily removed for simplification
+          // disableTransitionOnChange // Temporarily removed for simplification
         >
           {children}
-        </ThemeProvider>
+        </NextThemesProvider>
       </body>
     </html>
   );
