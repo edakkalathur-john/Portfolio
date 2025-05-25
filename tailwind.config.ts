@@ -2,7 +2,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    darkMode: 'class',
+    darkMode: 'class', // Ensure class-based dark mode is enabled
     content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,9 +11,7 @@ export default {
   theme: {
   	extend: {
           fontFamily: {
-            sans: ['var(--font-geist-sans)', 'sans-serif'],
-            mono: ['var(--font-geist-mono)', 'monospace'],
-            display: ['var(--font-display)'], // Added Space Grotesk
+            display: ['var(--font-display)'],
           },
           fontSize: {
             '5xl': ['3rem', { lineHeight: '1.1' }],
