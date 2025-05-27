@@ -1,8 +1,6 @@
-// app/page.jsx or HomePage.jsx
 
 'use client';
 
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {
   Github,
@@ -11,111 +9,186 @@ import {
   ArrowRight,
   Video,
   ChevronsDown,
-  Sun,
+  Star,
+  Figma,
+  Palette,
 } from 'lucide-react';
-
+import Header from '@/app/components/Header'; // Ensure Header is imported
 import { Education } from '@/app/components/Education';
 import { Experience } from '@/app/components/Experience';
 import { Skills } from '@/app/components/Skills';
+import SplineWrapper from '@/app/components/SplineWrapper';
 
-// Dynamically load SplineWrapper on client only
-const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
-  ssr: false,
-  loading: () => (
-    <p className="text-sm font-['Space_Mono',monospace] uppercase tracking-wide">
-      Loading 3D model...
-    </p>
-  ),
-});
 
 const projects = [
-  // ...project entries...
+  {
+    id: 'autonomous-chess-robot',
+    title: 'Project Arc: Autonomous Chess-Playing Robot',
+    description:
+      'Developed an autonomous robot designed to play chess using computer vision and deep learning techniques. Achieved 95% accuracy in move identification.',
+    image:
+      'https://images.pexels.com/photos/411195/pexels-photo-411195.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'YOLO', 'OpenCV', 'CNNs'],
+    icon: <ArrowRight className="w-6 h-6" />, // Changed to a generic icon
+    link: 'https://github.com/BenharJohn/chess-robot',
+    dataAiHint: "chess robot",
+  },
+  {
+    id: 'gesture-control',
+    title: 'Assistive Robot Control System',
+    description:
+      'A system for controlling a robotic arm through hand gestures, achieving 98% accuracy in real-time gesture recognition using MediaPipe.',
+    image:
+      'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['MediaPipe', 'Python', 'Machine Learning', '3D Printing'],
+    icon: <ArrowRight className="w-6 h-6" />, // Changed to a generic icon
+    link: 'https://github.com/BenharJohn/gesture-control',
+    dataAiHint: "gesture control",
+  },
+  {
+    id: 'multi-robot-solar',
+    title: 'Multi-Robot Solar-Powered System',
+    description:
+      'Developed a cooperative multi-robot system with solar-powered UGVs and UAVs for efficient exploration and coverage. Implemented MARL for coordination and energy-aware path planning.',
+    image:
+      'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
+    icon: <ArrowRight className="w-6 h-6" />, // Changed to a generic icon
+    link: 'https://github.com/BenharJohn/multi-robot-solar',
+    dataAiHint: "robot solar",
+  },
+  {
+    id: 'ur5-trajectory',
+    title: 'UR5 Trajectory Planning',
+    description:
+      'Advanced trajectory planning system for UR5 robotic arm, implementing smooth continuous motions using parametric equations and polynomial trajectories.',
+    image:
+      'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
+    icon: <ArrowRight className="w-6 h-6" />, // Changed to a generic icon
+    link: 'https://github.com/BenharJohn/trajectory_planning',
+    dataAiHint: "trajectory planning",
+  },
+  {
+    id: 'weather-forecasting',
+    title: 'Weather Forecasting System',
+    description:
+      'Advanced weather forecasting system using LSTM and SARIMA models for accurate predictions. Implemented ensemble learning for improved accuracy.',
+    image:
+      'https://images.pexels.com/photos/2448749/pexels-photo-2448749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas'],
+    icon: <ArrowRight className="w-6 h-6" />, // Changed to a generic icon
+    link: 'https://github.com/BenharJohn/weather-forecasting',
+    dataAiHint: "weather forecast",
+  },
+  {
+    id: 'smart-home',
+    title: 'Smart Home Automation',
+    description:
+      'IoT-based home automation system with real-time monitoring and control capabilities. Features include temperature control, lighting automation, and security monitoring.',
+    image:
+      'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
+    icon: <ArrowRight className="w-6 h-6" />, // Changed to a generic icon
+    link: 'https://github.com/yourusername/smart-home',
+    dataAiHint: "smart home",
+  },
 ];
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white font-['Space_Mono',monospace]">
-
-      {/* Site Header */}
-      <header>
-        <div className="w-full flex items-center justify-between py-4">
-          <div className="text-lg uppercase tracking-wide pl-4">[BENHAR JOHN]</div>
-          <nav className="hidden md:flex space-x-16 uppercase tracking-wide text-sm">
-            <Link href="#work">WORK ©</Link>
-            <Link href="#about">ABOUT</Link>
-            <Link href="#contact">REACH OUT</Link>
-          </nav>
-          <div className="flex items-center space-x-4 uppercase tracking-wide text-sm pr-4">
-            <span className="bg-yellow-300 text-black px-4 py-1 rounded-full">MEL [AU] 06:46 PM</span>
-            <button aria-label="Toggle dark mode"><Sun className="w-6 h-6" /></button>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-grow">
+    <div className="bg-white text-black font-display flex flex-col min-h-screen dark:bg-black dark:text-white tracking-widest">
+      <Header />
+      <main className="flex-grow pt-4 pb-8 md:pb-16">
         {/* Hero Section */}
-        <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] items-start justify-items-center gap-12 lg:gap-24 min-h-[80vh] w-full">
-
-          {/* Left: About Me */}
-          <div className="justify-self-start w-full max-w-sm text-sm uppercase tracking-wide pl-4">
+        <section className="grid md:grid-cols-[1fr_auto_1fr] gap-x-8 items-start mb-hero md:mb-hero min-h-[80vh] max-w-7xl mx-auto px-4">
+          {/* Left Column: About Me */}
+          <div className="justify-self-start w-full max-w-sm text-xs uppercase tracking-widest order-2 md:order-1 mt-8 md:mt-0 font-bold">
             <div className="p-6 bg-white/20 dark:bg-black/60 rounded-lg leading-relaxed">
-              Graduate student specializing in AI and machine learning within robotics and autonomous systems. Proficient in Python, TensorFlow, PyTorch, and ROS.
+              Graduate student specializing in AI and Machine Learning within Robotics and Autonomous Systems. Proficient in Python, TensorFlow, PyTorch, and ROS.
             </div>
           </div>
 
-          {/* Center: Model with Overlapping Title */}
-          <div className="relative justify-self-center w-full max-w-3xl h-[600px] flex items-center justify-center">
-            {/* Background Title */}
-            <h1 className="absolute top-1/2 transform -translate-y-1/2 text-6xl md:text-8xl lg:text-9xl font-extrabold text-gray-200 dark:text-gray-800 whitespace-nowrap z-0">
-              Robotics Engineer
-            </h1>
-            {/* 3D Model on top */}
+          {/* Central 3D Model */}
+          <div className="relative justify-self-center w-full max-w-3xl h-[600px] flex items-center justify-center order-1 md:order-2">
+            <h1 className="sr-only">Benhar John - 3D Interactive Portfolio</h1>
             <div className="relative z-10 w-full h-full">
-              <SplineWrapper scene="/models/scene.splinecode" className="w-full h-full" />
+               <SplineWrapper scene="/models/scene.splinecode" className="w-full h-full" />
             </div>
           </div>
 
-          {/* Right: Contact Icons */}
-          <div className="justify-self-end w-full max-w-sm flex flex-col items-end space-y-4 text-sm uppercase tracking-wide pr-4">
-            <a href="mailto:benharej@gmail.com" className="flex items-center hover:opacity-80">
-              <Mail className="w-5 h-5 mr-3" /> benharej@gmail.com
-            </a>
-            <a href="https://linkedin.com/in/benhar-john" className="flex items-center hover:opacity-80" target="_blank" rel="noopener noreferrer">
-              <Linkedin className="w-5 h-5 mr-3" /> LinkedIn
-            </a>
-            <a href="https://github.com/BenharJohn" className="flex items-center hover:opacity-80" target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5 mr-3" /> GitHub
-            </a>
+          {/* Right Column: Accolades / Social Links - Now handled by Header */}
+          <div className="justify-self-end w-full max-w-sm flex flex-col items-end space-y-4 text-xs uppercase tracking-widest order-3 mt-8 md:mt-0">
+            {/* Placeholder for accolades if needed later */}
+            {/* <div className="flex items-center space-x-2">
+              <Star size={14} className="text-yellow-400" />
+              <span>GOOD DESIGN AWARD WINNER</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Palette size={14} />
+              <span>BEST UI/UX 2024</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Figma size={14} />
+              <span>FIGMA COMMUNITY AWARD</span>
+            </div> */}
           </div>
-
         </section>
 
-        {/* Main Content Container */}
+        {/* Sections below the hero */}
         <div className="max-w-7xl mx-auto px-4 py-12 space-y-20">
-          {/* Projects Section */}
+          {/* Work Section */}
           <section id="work" className="space-y-10">
-            <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wide">
-              Selected Work ©
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 uppercase tracking-widest">
+              Selected Work
             </h2>
             <div className="grid md:grid-cols-2 gap-12">
-              {projects.map((proj) => (
-                <Link href={proj.link} key={proj.id} className="group">
-                  <div className="border border-gray-300 dark:border-gray-700 rounded-lg p-8 hover:bg-gray-100 dark:hover:bg-gray-900 transition flex flex-col h-full">
-                    <div className="relative w-full h-56 overflow-hidden rounded mb-6">
-                      <img src={proj.image} alt={proj.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                    </div>
-                    <span className="uppercase tracking-wide text-base text-gray-500 dark:text-gray-400 mb-3">{proj.title}</span>
-                    <p className="text-gray-700 dark:text-gray-300 flex-grow mb-6">{proj.description}</p>
-                    <div className="uppercase tracking-wide flex items-center text-gray-600 dark:text-gray-500 group-hover:text-gray-800 transition-colors">
-                      View Project <ArrowRight className="w-5 h-5 ml-3" />
-                    </div>
+              {projects.map(project => (
+                <Link
+                  href={project.link || '#'}
+                  key={project.id}
+                  className="group block outline-none border border-black/10 dark:border-white/10 rounded-lg p-6 md:p-8 bg-white dark:bg-zinc-900 hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 shadow-lg hover:shadow-xl focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="relative w-full h-52 sm:h-64 overflow-hidden rounded-lg mb-5 bg-neutral-200 dark:bg-neutral-800">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.onerror = null;
+                        target.src = 'https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';
+                      }}
+                      loading="lazy"
+                      data-ai-hint={project.dataAiHint}
+                    />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-black dark:text-white mb-2 group-hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors leading-snug uppercase tracking-widest">
+                    {project.title}
+                  </h3>
+                  <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed flex-grow mb-5 tracking-widest">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 rounded-full text-xs text-neutral-700 dark:text-neutral-300 tracking-widest"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-sm flex items-center text-yellow-600 dark:text-yellow-500 group-hover:underline font-semibold uppercase tracking-widest">
+                    View Project <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               ))}
             </div>
           </section>
 
-          {/* About & Resume Section */}
           <section id="about" className="space-y-12">
             <Education />
             <Experience />
@@ -124,19 +197,17 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center uppercase tracking-wide text-sm">
-        <a href="#" className="flex items-center hover:opacity-80">
-          <Video className="w-5 h-5 mr-3" /> [VIDEO TITLE] [00:00] WATCH <ArrowRight className="w-5 h-5 ml-3 transform -rotate-45" />
+      <footer className="max-w-7xl mx-auto px-4 py-10 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row justify-between items-center uppercase text-xs space-y-6 sm:space-y-0 text-neutral-600 dark:text-neutral-400 bg-white dark:bg-black tracking-widest">
+        <a href="#" className="flex items-center hover:opacity-80 transition-opacity">
+          <Video className="w-4 h-4 mr-2" /> [DEMO REEL] [02:30] <span className="ml-1 hidden sm:inline">WATCH</span> <ArrowRight className="w-4 h-4 ml-2 transform -rotate-45 group-hover:rotate-0 transition-transform" />
         </a>
-        <div className="hover:opacity-80 flex items-center space-x-3">
-          <span>SCROLL</span> <ChevronsDown className="w-5 h-5 animate-bounce" />
+        <div className="hover:opacity-80 flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <span>SCROLL TO TOP</span> <ChevronsDown className="w-4 h-4 transform rotate-180" />
         </div>
-        <a href="mailto:benharej@gmail.com" className="flex items-center bg-black text-white px-8 py-3 rounded-full hover:opacity-80">
+        <a href="mailto:benharej@gmail.com" className="flex items-center bg-yellow-400 hover:bg-yellow-500 text-black px-5 py-2.5 rounded-full transition-colors font-semibold">
           BOOK A CALL
         </a>
       </footer>
     </div>
   );
 }
-

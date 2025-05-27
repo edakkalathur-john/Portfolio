@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import { useEffect, useState } from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Header() {
   const [time, setTime] = useState('');
@@ -32,17 +33,30 @@ export default function Header() {
           <span className="font-bold">[BENHAR JOHN]</span>
         </Link>
         <nav className="hidden md:flex justify-center items-center gap-x-6 lg:gap-x-8 text-sm tracking-widest">
-          <a href="#work" className="hover:opacity-75 transition-opacity">WORK ©</a>
-          <a href="#about" className="hover:opacity-75 transition-opacity">ABOUT</a>
-          <a href="#contact" className="hover:opacity-75 transition-opacity">REACH OUT</a>
+          <Link href="#work" className="hover:opacity-75 transition-opacity">WORK ©</Link>
+          <Link href="#about" className="hover:opacity-75 transition-opacity">ABOUT</Link>
+          <Link href="#contact" className="hover:opacity-75 transition-opacity">REACH OUT</Link>
         </nav>
-        <div className="flex items-center justify-end gap-x-4"> {/* Added justify-end to push content to the right of this cell */}
-          {isClient && time && (
-            <span className="bg-yellow-400 text-black px-2 py-1 rounded text-xs">
-              MEL [AU] {time}
-            </span>
-          )}
-          <ThemeToggle />
+        <div className="flex flex-col items-end"> {/* Changed to flex-col and items-end */}
+          <div className="flex items-center justify-end gap-x-4">
+            {isClient && time && (
+              <span className="bg-yellow-400 text-black px-2 py-1 rounded text-xs">
+                MEL [AU] {time}
+              </span>
+            )}
+            <ThemeToggle />
+          </div>
+          <div className="flex flex-col items-end mt-2 space-y-2"> {/* New div for icons */}
+            <a href="https://github.com/BenharJohn" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity" aria-label="Github">
+              <Github size={18} />
+            </a>
+            <a href="https://linkedin.com/in/benhar-john" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity" aria-label="LinkedIn">
+              <Linkedin size={18} />
+            </a>
+            <a href="mailto:benharej@gmail.com" className="hover:opacity-75 transition-opacity" aria-label="Email">
+              <Mail size={18} />
+            </a>
+          </div>
         </div>
       </div>
     </header>
