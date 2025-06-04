@@ -1,10 +1,10 @@
+// app/projects/[id]/page.tsx
 'use client';
 
 import React from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
-import { Canvas } from '@react-three/fiber';
 
 const projectData = {
   'autonomous-chess-robot': {
@@ -226,84 +226,73 @@ Technical Implementation:
   }
 };
 
-export function ProjectDetail() {
-  const { id } = useParams<{ id: string }>();
-  const project = id ? projectData[id as keyof typeof projectData] : null;
+export default function ProjectDetailPage() {
+  const params = useParams();
+  const id = params.id;
+  const project = projectData[id as keyof typeof projectData] || null;
 
   if (!project) {
-    return <div>Project not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg">Project &quot;{id}&quot; not found</p>
+      </div>
+    );
   }
 
-  const hasGitHub = project.github && project.github !== '#';
-
   return (
-    <div className="min-h-screen bg-zinc-950 text-white pt-24">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link 
-          to="/" 
-          className="inline-flex items-center text-zinc-400 hover:text-white mb-8"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Projects
-        </Link>
+    <div className="min-h-screen bg-white dark:bg-black text-neutral-900 dark:text-neutral-100 pt-24 px-4 sm:px-6 lg:px-8">
+      <Link href="/" className="inline-flex items-center text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 mb-8">
+        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Projects
+      </Link>
 
-        <div className="mb-12">
-          <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
-          <p className="text-zinc-400 text-lg mb-6">{project.description}</p>
-
-          {hasGitHub && (
-            <a 
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg font-medium hover:bg-zinc-200 transition-colors"
-            >
-              <Github className="w-4 h-4" />
-              View Source
-            </a>
-          )}
-        </div>
+      <div className="max-w-3xl mx-auto space-y-8">
+        <h1 className="text-4xl font-bold">{project.title}</h1>
+        <p className="text-lg text-neutral-700 dark:text-neutral-300">{project.description}</p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-zinc-900/50 rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Project Overview</h2>
-              <div className="prose prose-invert max-w-none">
-                {project.fullDescription.split('\n').map((paragraph, index) => (
-                  <p key={index} className="text-zinc-400 whitespace-pre-line">{paragraph}</p>
-                ))}
-              </div>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+              <h2 className="text-2xl font-semibold mb-4">Project Overview</h2>
+              {project.fullDescription.split('\n').map((para, idx) => (
+                <p key={idx} className="mb-4 whitespace-pre-line text-neutral-700 dark:text-neutral-300">
+                  {para}
+                </p>
+              ))}
             </div>
           </div>
-          <div className="space-y-6">
-            <div className="bg-zinc-900/50 rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Technologies</h2>
+          <aside className="space-y-6">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+              <h2 className="text-2xl font-semibold mb-4">Technologies</h2>
               <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech, index) => (
-                  <span 
-                    key={index}
-                    className="px-3 py-1 bg-zinc-800 rounded-full text-sm"
-                  >
+                {project.tech.map((tech, i) => (
+                  <span key={i} className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm">
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="bg-zinc-900/50 rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Key Results</h2>
-              <ul className="space-y-2">
-                {project.results.map((result, index) => (
-                  <li 
-                    key={index}
-                    className="flex items-start gap-2 text-zinc-400"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 mt-2 flex-shrink-0" />
-                    {result}
-                  </li>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+              <h2 className="text-2xl font-semibold mb-4">Key Results</h2>
+              <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+                {project.results.map((res, idx) => (
+                  <li key={idx}>{res}</li>
                 ))}
               </ul>
             </div>
-          </div>
+          </aside>
+        </div>
+
+        <div className="flex items-center gap-4">
+          {project.github && (
+            <Link href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded hover:opacity-90">
+              <Github className="w-5 h-5 mr-2" /> View Source
+            </Link>
+          )}
+          {project.demo && (
+            <Link href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded hover:opacity-90">
+              <ExternalLink className="w-5 h-5 mr-2" /> Live Demo
+            </Link>
+          )}
         </div>
       </div>
     </div>
