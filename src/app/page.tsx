@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowDown, Github, Linkedin, ArrowRight, Video, ChevronsDown, Sun, Moon, Mail, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion'; // Added framer-motion
+import { motion } from 'framer-motion';
 
 // Lazy-load 3D model only on client
 const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
@@ -14,73 +14,77 @@ const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
   loading: () => <p className="text-sm uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Loading 3D model…</p>,
 });
 
-// Project data
+// Project data with updated, more relevant images
 const projectDisplayData = {
+
+
   'autonomous-chess-robot': {
-    title: 'Autonomous Chess-Playing Robot',
+    title: 'Poject ARC',
     description: 'Vision-driven robotic system autonomously playing chess via deep learning perception and manipulation.',
-    image: 'https://images.pexels.com/photos/260024/pexels-photo-260024.jpeg',
+    image: '/images/chess1.jpg',
   },
+
   'assistive-robot-control': {
     title: 'Assistive Robot Control System',
     description: 'Vision-based robotic hand control using real-time gesture recognition and machine learning.',
-    image: 'https://images.pexels.com/photos/4491601/pexels-photo-4491601.jpeg',
+    image: '/images/hand2.jpg',
   },
+
+
+  'ai-chatbot': {
+    title: 'AI-Powered Productivity & Wellness Companion',
+    description: 'NLP-powered modern web application designed to be a holistic companion for productivity and mental well-being.',
+    image: '/images/chat.jpg',
+  },
+  
+
+
   'multi-robot-solar': {
     title: 'Multi-Robot Solar-Powered System',
     description: 'Cooperative multi-robot system with solar-powered UGVs and UAVs for efficient exploration and coverage.',
-    image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg',
+    image: '/images/mrs.jpg',
   },
   'ur5-trajectory': {
     title: 'UR5 Trajectory Planning',
     description: 'Advanced trajectory planning system for UR5 robotic arm.',
-    image: 'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg',
+    image: '/images/ur5.jpg',
   },
   'weather-forecasting': {
     title: 'Weather Forecasting System',
     description: 'Advanced weather forecasting system using machine learning.',
-    image: 'https://images.pexels.com/photos/2448749/pexels-photo-2448749.jpeg',
+    image: '/images/weather.jpg',
   },
-  'smart-home': {
-    title: 'Smart Home Automation',
-    description: 'IoT-based home automation system with real-time monitoring.',
-    image: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg',
-  },
-  'ai-chatbot': {
-    title: 'AI Customer Service Chatbot',
-    description: 'NLP-powered customer service automation system.',
-    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg',
-  },
-  'data-analytics': {
-    title: 'Real-time Data Analytics Platform',
-    description: 'Scalable real-time data processing and analytics system.',
-    image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg',
-  },
+
+ 
+
 } as const;
+
 
 const projects = Object.entries(projectDisplayData).map(([id, data]) => ({
   id,
   ...data,
-  link: `/projects/${id}`,
+  link: `/project/${id}`,
 }));
 
 // Placeholder data and components for Education, Experience, Skills
 
-// --- Education Section ---
+/// --- Education Section ---
 const educationData = [
   {
     id: 1,
-    degree: 'Master of Science in Robotics & AI',
-    institution: 'University of Advanced Technology',
-    years: '2022 - 2024',
-    description: 'Specialized in machine learning applications for autonomous systems. Thesis on sensor fusion for drone navigation.',
+    degree: 'Master of Science in Robotics & Autonomous Systems (AI)',
+    institution: 'Arizona State University',
+    years: '2024 - 2026',
+    gpa: '3.89', // GPA is now a separate property
+    description: 'Specializing in the application of Artificial Intelligence and advanced mathematical concepts to solve complex problems in robotics. Key coursework includes: Advances in Robotics Learning, Multi-Robot Systems, Knowledge Representation.',
   },
   {
     id: 2,
-    degree: 'Bachelor of Engineering in Mechatronics',
-    institution: 'Tech State University',
-    years: '2018 - 2022',
-    description: 'Focused on embedded systems and control theory. Capstone project: A line-following robot with obstacle avoidance.',
+    degree: 'Bachelor of Technology in Robotics, AI & Machine Learning',
+    institution: 'Srinivas University',
+    years: '2020 - 2024',
+    gpa: '8.5', // GPA is now a separate property
+    description: 'Developed a strong foundation in intelligent systems through comprehensive studies in software engineering. Foundational coursework included: Machine Learning, Computer Vision, and Data Structures & Algorithms.',
   },
 ];
 
@@ -124,24 +128,35 @@ function EducationSection() {
 const experienceData = [
   {
     id: 1,
-    role: 'AI Research Intern',
-    company: 'Innovatech Solutions',
-    years: 'Summer 2023',
+    role: 'Volunteer Research Assistant',
+    company: 'RISE Lab, Arizona State University',
+    years: 'Oct 2024 – Present',
     responsibilities: [
-      'Developed and tested computer vision algorithms for object detection.',
-      'Assisted in data collection and preprocessing for machine learning models.',
-      'Contributed to a research paper on reinforcement learning for robotic arm manipulation.',
+      'Collaborated with PhD students to design advanced trajectory planning algorithms for the UR5 robotic arm, implementing smooth circular and multi-waypoint trajectories using Python.',
+      'Simulated robotic motions in ROS and Gazebo to validate the stability, precision, and efficiency of planned trajectories.',
+      'Integrated TRAC-IK for inverse kinematics, enabling precise real-time control of robotic end-effectors in teleoperation tasks.',
     ],
   },
   {
     id: 2,
-    role: 'Robotics Club President',
-    company: 'Tech State University Robotics Club',
-    years: '2020 - 2022',
+    role: 'Robotics & Automation Intern',
+    company: 'K-Tech Centre of Excellence in Aerospace',
+    years: 'May 2023 – Aug 2023',
     responsibilities: [
-      'Led a team of 20+ students in designing and building competitive robots.',
-      'Organized workshops on ROS, Python, and Arduino programming.',
-      'Secured funding and managed the club\'s budget.',
+      'Modeled and simulated a robotic arm for quality checks using CATIA, SIMULIA, and DELMIA, resulting in a 15% improvement in task accuracy.',
+      'Contributed to optimizing the robotic arm\'s design, leading to a 10% reduction in energy consumption and a 5% decrease in cycle time.',
+      'Developed simulation models to proactively identify operational issues, enhancing the arm’s reliability and reducing downtime by 20%.',
+    ],
+  },
+  {
+    id: 3,
+    role: 'Robotics Club President',
+    company: 'Srinivas University Institute of Engineering and Technology',
+    years: '2023 - 2024',
+    responsibilities: [
+      'Led a team of over 20 students in designing, building, and programming competitive robots for national-level competitions.',
+      'Organized and conducted technical workshops on ROS, Python, and Arduino, improving club members\' practical skills.',
+      'Successfully secured annual funding through university grants and managed the club’s budget and resources.',
     ],
   },
 ];
@@ -185,23 +200,29 @@ function ExperienceSection() {
 }
 
 // --- Skills Section ---
+// --- Skills Section ---
+// Strategically reorganized and updated to align with 2025 AI/Robotics job market requirements.
 const skillsData = [
   {
-    category: 'Programming Languages',
-    items: ['Python', 'C++', 'JavaScript', 'ROS (Python/C++)'],
+    category: 'AI / ML Frameworks & Libraries',
+    items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Pandas', 'NumPy', 'OpenCV', 'Hugging Face'],
   },
   {
-    category: 'AI & Machine Learning',
-    items: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV', 'YOLO', 'Computer Vision', 'NLP'],
+    category: 'Key Concepts & Specializations',
+    items: ['Computer Vision', 'NLP', 'Reinforcement Learning', 'Deep Learning', 'Sensor Fusion', 'SLAM', 'LLMs', 'Transformer Architecture'],
   },
   {
-    category: 'Robotics & Tools',
-    items: ['ROS', 'Gazebo', 'Arduino', 'Raspberry Pi', 'Git', 'Docker', 'Linux'],
+    category: 'Robotics & Simulation',
+    items: ['ROS / ROS 2', 'Gazebo', 'NVIDIA Isaac Sim', 'UR5 / Robot Arm Control', 'Motion Planning (MoveIt)', 'Arduino'],
   },
   {
-    category: 'Other',
-    items: ['Problem Solving', 'Algorithm Design', 'Data Analysis', 'System Integration'],
-  }
+    category: 'Developer Tools & Platforms',
+    items: ['Git', 'Docker', 'Linux', 'CI/CD (GitHub Actions)', 'Jupyter Notebooks', 'AWS / GCP (Basics)'],
+  },
+  {
+    category: 'Languages',
+    items: ['Python', 'C++'],
+  },
 ];
 
 function SkillsSection() {
@@ -295,7 +316,8 @@ export default function HomePage() {
 
       <main className="pt-16 flex-grow bg-white dark:bg-black">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <h1 className="whitespace-nowrap text-7xl font-extrabold uppercase tracking-widest text-center text-neutral-900 dark:text-white mb-2">
+          {/* --- MODIFIED: RESPONSIVE H1 TITLE --- */}
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-widest text-center text-neutral-900 dark:text-white mb-2 break-words">
             Robotics Engineer
           </h1>
           <div className="relative w-full h-[600px] sm:h-[750px] md:h-[900px] lg:h-[1100px] mx-auto -mt-64">
@@ -305,29 +327,37 @@ export default function HomePage() {
 
         <section id="work" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wider text-center text-neutral-900 dark:text-white mb-12">
-            Selected Work ©
+            Selected Work 
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((proj) => (
-              <Link key={proj.id} href={proj.link} className="group block">
-                <div className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white dark:bg-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-600 transition-shadow duration-300 flex flex-col h-full shadow-lg hover:shadow-xl">
-                  <div className="relative w-full h-52 sm:h-56 overflow-hidden rounded-lg mb-5 bg-neutral-200 dark:bg-neutral-800">
-                    <img
-                      src={proj.image}
-                      alt={proj.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      onError={(e) => { e.currentTarget.onerror=null; e.currentTarget.src='https://placehold.co/600x400?text=No+Image'; }}
-                      loading="lazy"
-                    />
+              <Link
+                key={proj.id}
+                href={proj.link}
+                // --- MODIFIED: REDUCED HEIGHT (h-80) ---
+                className="group block relative overflow-hidden rounded-xl border border-neutral-200/20 dark:border-neutral-800/80 shadow-lg hover:shadow-yellow-500/10 dark:hover:shadow-yellow-400/10 transition-all duration-300 h-60"
+              >
+                {/* Blurred Background Image */}
+                <div
+                  style={{ backgroundImage: `url(${proj.image})` }}
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 blur-sm"
+                />
+
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/60 dark:bg-black/70 group-hover:bg-black/50 dark:group-hover:bg-black/60 transition-colors duration-300" />
+
+                {/* Content */}
+                <div className="relative flex flex-col h-full p-6 sm:p-8">
+                  <div className="flex-grow">
+                    <h3 className="uppercase tracking-wider text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">
+                      {proj.title}
+                    </h3>
+                    <p className="text-neutral-300 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
+                      {proj.description}
+                    </p>
                   </div>
-                  <h3 className="uppercase tracking-wider text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-2 group-hover:text-yellow-600">
-                    {proj.title}
-                  </h3>
-                  <p className="flex-grow mb-5 text-neutral-600 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
-                    {proj.description}
-                  </p>
-                  <span className="uppercase tracking-wider text-sm flex items-center text-yellow-600 dark:text-yellow-500 group-hover:underline font-semibold">
-                    View Project <ArrowRight className="w-4 h-4 ml-1" />
+                  <span className="uppercase tracking-wider text-sm flex items-center text-yellow-500 dark:text-yellow-400 font-semibold mt-4">
+                    View Project <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </div>
               </Link>

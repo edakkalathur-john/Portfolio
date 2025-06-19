@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Github, Linkedin, Youtube, ExternalLink } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { RobotScene } from '@/components/RobotScene';
 import { notFound } from 'next/navigation';
@@ -7,34 +7,66 @@ import Link from 'next/link';
 
 // Consolidated project data with full entries
 const projectData = {
+
+
+  
   'assistive-robot-control': {
-    title: 'Assistive Robot Control System',
-    description: 'Vision-based robotic hand control using real-time gesture recognition and machine learning.',
-    fullDescription: `A human-robot interaction system enabling control of a 3D-printed robotic hand through hand gestures.
+    title: 'Real-Time Gesture-Controlled Robotic Hand',
+    description: 'A vision-based system for controlling a physical robotic hand using real-time gesture analysis.',
+    fullDescription: `An intuitive human-robot interface designed to control a 3D-printed robotic hand using hand gestures captured through a standard webcam. The system translates finger counts into commands, enabling fluid and direct manipulation of the hardware.
 
 Key Features:
-• MediaPipe-based 21-point hand landmark detection
-• Hybrid SVM-CNN gesture classifier
-• Tendon-driven robotic hand mechanism
-• Kalman-filtered input smoothing
-• Low-latency UDP communication
+• Real-time gesture capture via standard webcam
+• Contour-based finger counting for multi-gesture recognition (fist, open palm, pointing, etc.)
+• Articulated 5-finger robotic hand with servo-driven actuation
+• Low-latency serial communication protocol for immediate hardware response
+• Intuitive user interface with a defined Region of Interest (ROI) for interaction
 
 Technical Implementation:
-• Trained on 8,000+ gesture samples across diverse users
-• Implemented PCA for landmark dimensionality reduction
-• Dynamixel servo control for finger articulation
-• ROS integration for sensor fusion
-• TensorFlow Lite for edge deployment`,
-    tech: ['MediaPipe', 'TensorFlow Lite', 'ROS', 'Dynamixel', 'OpenCV'],
-    image: 'https://images.pexels.com/photos/4491601/pexels-photo-4491601.jpeg',
-    github: '#',
-    demo: '#',
+• Developed using Python with OpenCV for core image processing tasks.
+• Utilized HSV color-space thresholding and morphological transformations to isolate the user's hand.
+• Implemented a gesture recognition algorithm based on contour analysis and convexity defects to count extended fingers.
+• Arduino UNO programmed in C++ to translate serial commands into precise PWM signals for MG90s servo motors.
+• Established a robust communication link between the Python application and the Arduino using the PySerial library.`,
+    tech: ['Python', 'OpenCV', 'Arduino', 'PySerial', 'NumPy'],
+    // Best image would be a photo of your actual project in action. This is a placeholder.
+    image: '/images/hand2.jpg',
+    github: 'https://github.com/BenharJohn/Project-ARC', // Replace with your GitHub repository link
+    demo: 'https://youtube.com/shorts/V_11GS3dcyU?feature=share',     // Replace with a link to a video demo if you have one
     results: [
-      '98% gesture recognition accuracy',
-      '30% faster task completion vs traditional controls',
-      '<100 ms end-to-end latency'
+      'Achieved real-time control with minimal perceptible lag between gesture and action',
+      'Successfully distinguished between multiple distinct hand gestures (e.g., open palm, fist)',
+      'Created a reliable and replicable system using accessible hardware and open-source software'
     ],
   },
+
+  'autonomous-chess-robot': {
+    title: 'Autonomous Chess-Playing Robot',
+    description: 'An autonomous robot designed to play chess using computer vision and deep learning techniques.',
+    fullDescription: `This project features an autonomous robot capable of playing a full game of chess against a human opponent by perceiving the board and physically moving pieces.
+
+Key Features:
+• Autonomous gameplay driven by a computer vision pipeline
+• Real-time detection and identification of all chess pieces
+• High-precision robotic arm manipulation for seamless interaction
+• Responsive game-play through an optimized vision and control system
+
+Technical Implementation:
+• Used Python and OpenCV for high-speed image processing and game state management.
+• Implemented YOLO and custom CNNs for piece detection, achieving 95% accuracy.
+• Designed and simulated robot kinematics for precise and safe arm movements.
+• Integrated the complete system for robust, end-to-end gameplay.`,
+    tech: ['Python', 'OpenCV', 'YOLO', 'CNNs', 'Robotics'],
+    image: 'https://images.unsplash.com/photo-1590240473870-a1c22a2f60e0?q=80&w=2940&auto=format&fit=crop',
+    //linkedin: 'https://linkedin.com/in/benhar-john',
+    demo: 'https://youtu.be/mXT7cy6JQiU',
+    results: [
+      '95% accuracy in move identification',
+      'Real-time gameplay responsiveness',
+      'Seamless physical piece interaction'
+    ]
+},
+
   'multi-robot-solar': {
     title: 'Multi-Robot Solar-Powered System',
     description: 'Cooperative multi-robot system with solar-powered UGVs and UAVs for efficient exploration and coverage.',
@@ -55,8 +87,8 @@ Technical Implementation:
 • Simulated in Gazebo`,
     tech: ['Python', 'MARL', 'ROS', 'Voronoi'],
     image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg',
-    github: 'https://linkedin.com/in/benhar-john',
-    demo: 'https://youtube.com/demo',
+    linkedin: 'https://www.linkedin.com/posts/benhar-john_robotics-multirobotsystems-innovation-activity-7286310065634975744-tMNg?utm_source=share&utm_medium=member_desktop&rcm=ACoAAECEhXkBjb3ykTaYApYUxRtTJFvbWwMcGVs',
+    //demo: 'https://youtube.com/demo',
     results: [
       '95% coverage efficiency',
       '30% reduced energy consumption',
@@ -81,7 +113,7 @@ Technical Implementation:
     tech: ['Python', 'ROS', 'TRAC-IK', 'SciPy'],
     image: 'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg',
     github: 'https://linkedin.com/in/benhar-john',
-    demo: 'https://youtube.com/demo',
+   // demo: 'https://youtube.com/demo',
     results: [
       'Smooth continuous motion',
       '25% faster execution',
@@ -104,7 +136,7 @@ Technical Implementation:
     tech: ['Python', 'TensorFlow', 'SARIMA', 'Pandas', 'scikit-learn'],
     image: 'https://images.pexels.com/photos/2448749/pexels-photo-2448749.jpeg',
     github: 'https://github.com/BenharJohn/weather-forecasting',
-    demo: 'https://youtube.com/demo',
+    //demo: 'https://youtube.com/demo',
     results: [
       '90% accuracy',
       'Anomaly detection',
@@ -127,37 +159,52 @@ Technical Implementation:
 • MQTT communications`,
     tech: ['React', 'Node.js', 'MQTT', 'MongoDB'],
     image: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg',
-    github: 'https://github.com/yourusername/smart-home',
-    demo: 'https://demo.smart-home.com',
+    //github: 'https://github.com/yourusername/smart-home',
+    //demo: 'https://demo.smart-home.com',
     results: [
       '25% energy savings',
       'Improved security',
       '80% routine automation'
     ],
   },
-  'ai-chatbot': {
-    title: 'AI Customer Service Chatbot',
-    description: 'NLP-powered customer support automation.',
-    fullDescription: `A FastAPI-based chatbot with TensorFlow NLU and sentiment analysis.
 
-Key Features:
-• Multi-platform
-• Ticket creation
-• Analytics dashboard
 
-Technical Implementation:
-• Python + FastAPI
-• TensorFlow models`,
-    tech: ['Python', 'TensorFlow', 'NLP', 'FastAPI'],
-    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg',
-    github: '',
-    demo: '',
-    results: [
-      '90% resolution',
-      '60% faster responses',
-      '40% satisfaction gain'
-    ],
-  },
+    'ai-chatbot': {
+      // 1. Add a dedicated status key
+      status: 'In Development',
+      title: 'FocusAssist - The AI-Powered Productivity & Wellness Companion (In Development)',
+      description: 'An AI-powered web app that merges a proactive productivity assistant with an empathetic wellness journal.',
+      fullDescription: `A modern web application designed to be a holistic companion for productivity and mental well-being. It moves beyond a standard to-do list by integrating a sophisticated, context-aware AI that serves as both a proactive personal assistant and an empathetic journal.
+  
+  Key Features
+  • Unified AI Agent: A powerful AI "brain" (Google Gemini) that switches between an efficient assistant and an empathetic listener.
+  • AI-Powered Task Decomposition: The AI uses Function Calling to intelligently break down complex goals into scheduled, actionable subtasks.
+  • Persistent & Context-Aware Journal: A safe space for reflective conversation where the AI remembers previous topics for stateful, meaningful dialogue.
+  • Real-Time Task Management: A Supabase backend with Realtime Subscriptions ensures the task list updates instantly for all users.
+  • Interactive Focus Mode: A Pomodoro timer with integrated ambient sounds and a unique "Pattern Recall" brain-training game for mindful breaks.
+  • Intelligent Learning Tools: Includes an AI-powered concept explainer, text summarizer, and a Flashcard Generator.
+  
+   Development Status & Roadmap
+  FocusAssist is currently under active development. Core features like AI task decomposition, the persistent journal, and real-time task management are functional.
+  
+  Upcoming Features:
+  • Mobile-First Responsive Design: Ensuring a seamless experience on all devices.
+  • Third-Party Integrations: Connecting with Google Calendar and other services.
+  • Deeper Analytics: Providing users with insights into their productivity and wellness patterns.`,
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Gemini API', 'Supabase', 'Netlify Functions'],
+      image: 'path/to/your/screenshot.png', // A screenshot of the current UI would be perfect
+     // github: '#', // Your GitHub repo link
+      // 3. For the demo link, it's best to link to a short video of the current state
+      demo: 'https://prismatic-pastelito-2fbd24.netlify.app/', // Link to a Loom or YouTube video showing the features in action
+      // 4. Reframe "results" as "Key Milestones" or "Project Goals"
+      results: [
+        'Successfully integrated Gemini API for complex, multi-step agentic tasks',
+        'Established a real-time, bi-directional data flow with Supabase subscriptions',
+        'Designed and implemented a secure, scalable serverless architecture on Netlify',
+      ],
+    },
+
+ 
   'data-analytics': {
     title: 'Real-time Data Analytics Platform',
     description: 'Scalable stream processing and dashboards.',
@@ -194,32 +241,49 @@ export default function ProjectDetail({ params }: { params: Params }) {
 
   if (!project) notFound();
 
+  // --- MODIFIED: Logic to check for each link's existence ---
   const hasGitHub = project.github && project.github !== '#';
+  const hasLinkedIn = project.linkedin && project.linkedin !== '#';
+  const hasDemo = project.demo && project.demo !== '#';
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white pt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="inline-flex items-center text-zinc-400 hover:text-white mb-8">
+        <Link href="/" className="inline-flex items-center text-zinc-400 hover:text-white mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Projects
         </Link>
 
         <div className="mb-12">
-          <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
-          <p className="text-zinc-400 text-lg mb-6">{project.description}</p>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">{project.title}</h1>
+          <p className="text-zinc-400 text-lg mb-8">{project.description}</p>
 
-          {hasGitHub && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg font-medium hover:bg-zinc-200 transition-colors">
-              <Github className="w-4 h-4" /> View Source
-            </a>
-          )}
+          {/* --- MODIFIED: Container for all external link buttons --- */}
+          <div className="flex flex-wrap items-center gap-4">
+            {hasGitHub && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-800 text-white rounded-lg font-medium hover:bg-zinc-700 transition-colors">
+                <Github className="w-4 h-4" /> View Source
+              </a>
+            )}
+            {hasLinkedIn && (
+              <a href={project.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-500 transition-colors">
+                <Linkedin className="w-4 h-4" /> View Post
+              </a>
+            )}
+            {hasDemo && (
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-500 transition-colors">
+                <Youtube className="w-4 h-4" /> Watch Demo
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-zinc-900/50 rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">Project Overview</h2>
-              <div className="prose prose-invert max-w-none">
-                {project.fullDescription.split('\n').map((paragraph, idx) => <p key={idx} className="text-zinc-400 whitespace-pre-line">{paragraph}</p>)}
+              {/* Using a div with whitespace-pre-line for better control over paragraphs */}
+              <div className="prose prose-invert max-w-none text-zinc-400 space-y-4 whitespace-pre-line">
+                {project.fullDescription}
               </div>
             </div>
           </div>
@@ -233,7 +297,7 @@ export default function ProjectDetail({ params }: { params: Params }) {
             <div className="bg-zinc-900/50 rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">Key Results</h2>
               <ul className="space-y-2">
-                {project.results.map((res, idx) => <li key={idx} className="flex items-start gap-2 text-zinc-400"><span className="w-1.5 h-1.5 rounded-full bg-zinc-600 mt-2 flex-shrink-0" />{res}</li>)}
+                {project.results.map((res, idx) => <li key={idx} className="flex items-start gap-3 text-zinc-400"><span className="w-1.5 h-1.5 rounded-full bg-zinc-600 mt-2 flex-shrink-0" />{res}</li>)}
               </ul>
             </div>
           </div>
