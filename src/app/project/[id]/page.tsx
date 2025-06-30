@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ArrowLeft, Github, Linkedin, Youtube, ExternalLink } from 'lucide-react';
-import { Canvas } from '@react-three/fiber';
-import { RobotScene } from '@/components/RobotScene';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Canvas and RobotScene with SSR disabled
+const Canvas = dynamic(() => import('@react-three/fiber').then(mod => ({ default: mod.Canvas })), {
+  ssr: false,
+  loading: () => <div className="w-full h-64 bg-zinc-800 rounded-lg animate-pulse" />
+});
+
+const RobotScene = dynamic(() => import('@/components/RobotScene').then(mod => ({ default: mod.RobotScene })), {
+  ssr: false
+});
 
 // Consolidated project data with full entries
 const projectData = {
