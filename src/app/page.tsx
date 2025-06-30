@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowDown, Github, Linkedin, ArrowRight, Video, ChevronsDown, Sun, Moon, Mail, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
@@ -145,7 +145,7 @@ const experienceData = [
     responsibilities: [
       'Modeled and simulated a robotic arm for quality checks using CATIA, SIMULIA, and DELMIA, resulting in a 15% improvement in task accuracy.',
       'Contributed to optimizing the robotic arm\'s design, leading to a 10% reduction in energy consumption and a 5% decrease in cycle time.',
-      'Developed simulation models to proactively identify operational issues, enhancing the arm’s reliability and reducing downtime by 20%.',
+      'Developed simulation models to proactively identify operational issues, enhancing the arm's reliability and reducing downtime by 20%.',
     ],
   },
   {
@@ -156,7 +156,7 @@ const experienceData = [
     responsibilities: [
       'Led a team of over 20 students in designing, building, and programming competitive robots for national-level competitions.',
       'Organized and conducted technical workshops on ROS, Python, and Arduino, improving club members\' practical skills.',
-      'Successfully secured annual funding through university grants and managed the club’s budget and resources.',
+      'Successfully secured annual funding through university grants and managed the club's budget and resources.',
     ],
   },
 ];
@@ -321,7 +321,9 @@ export default function HomePage() {
             Robotics Engineer
           </h1>
           <div className="relative w-full h-[600px] sm:h-[750px] md:h-[900px] lg:h-[1100px] mx-auto -mt-64">
-            <SplineWrapper scene="/models/scene.splinecode" className="w-full h-full scale-75" />
+            <Suspense fallback={<p className="text-sm uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Loading 3D model…</p>}>
+              <SplineWrapper scene="/models/scene.splinecode" className="w-full h-full scale-75" />
+            </Suspense>
           </div>
         </section>
 
