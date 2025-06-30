@@ -1,5 +1,3 @@
-// app/page.jsx or HomePage.jsx
-
 'use client';
 
 import React, { useEffect, useState, Suspense } from 'react';
@@ -8,10 +6,9 @@ import Link from 'next/link';
 import { ArrowDown, Github, Linkedin, ArrowRight, Video, ChevronsDown, Sun, Moon, Mail, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Lazy-load 3D model only on client
+// Lazy-load 3D model only on client - removed redundant loading property
 const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
   ssr: false,
-  loading: () => <p className="text-sm uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Loading 3D model…</p>,
 });
 
 // Project data with updated, more relevant images
