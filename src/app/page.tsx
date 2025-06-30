@@ -145,7 +145,7 @@ const experienceData = [
     responsibilities: [
       'Modeled and simulated a robotic arm for quality checks using CATIA, SIMULIA, and DELMIA, resulting in a 15% improvement in task accuracy.',
       'Contributed to optimizing the robotic arm\'s design, leading to a 10% reduction in energy consumption and a 5% decrease in cycle time.',
-      'Developed simulation models to proactively identify operational issues, enhancing the arm's reliability and reducing downtime by 20%.',
+      'Developed simulation models to proactively identify operational issues, enhancing the arm\'s reliability and reducing downtime by 20%.',
     ],
   },
   {
@@ -156,7 +156,7 @@ const experienceData = [
     responsibilities: [
       'Led a team of over 20 students in designing, building, and programming competitive robots for national-level competitions.',
       'Organized and conducted technical workshops on ROS, Python, and Arduino, improving club members\' practical skills.',
-      'Successfully secured annual funding through university grants and managed the club's budget and resources.',
+      'Successfully secured annual funding through university grants and managed the club\'s budget and resources.',
     ],
   },
 ];
