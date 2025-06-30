@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowDown, Github, Linkedin, ArrowRight, Video, ChevronsDown, Sun, Moon, Mail, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { LiquidGlass } from '@/components/ui/liquid-glass';
 
 // Lazy-load 3D model only on client - removed redundant loading property
 const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
@@ -99,21 +100,28 @@ function EducationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white dark:bg-neutral-900 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-yellow-400/20 dark:bg-yellow-500/20 rounded-full mt-1">
-                <GraduationCap className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
+            <LiquidGlass 
+              className="rounded-xl overflow-hidden"
+              color="#4f46e5"
+              opacity={0.2}
+            >
+              <div className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="p-2 bg-yellow-400/20 dark:bg-yellow-500/20 rounded-full mt-1">
+                    <GraduationCap className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-1">{edu.degree}</h3>
+                    <p className="text-md text-neutral-600 dark:text-neutral-400 mb-1">{edu.institution}</p>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-500 mb-3">{edu.years}</p>
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
+                      {edu.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-1">{edu.degree}</h3>
-                <p className="text-md text-neutral-600 dark:text-neutral-400 mb-1">{edu.institution}</p>
-                <p className="text-sm text-neutral-500 dark:text-neutral-500 mb-3">{edu.years}</p>
-                <p className="text-neutral-600 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
-                  {edu.description}
-                </p>
-              </div>
-            </div>
+            </LiquidGlass>
           </motion.div>
         ))}
       </div>
@@ -172,23 +180,30 @@ function ExperienceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white dark:bg-neutral-900 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="flex items-start gap-4">
-               <div className="p-2 bg-blue-400/20 dark:bg-blue-500/20 rounded-full mt-1">
-                <Briefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            <LiquidGlass 
+              className="rounded-xl overflow-hidden"
+              color="#06b6d4"
+              opacity={0.2}
+            >
+              <div className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="flex items-start gap-4">
+                   <div className="p-2 bg-blue-400/20 dark:bg-blue-500/20 rounded-full mt-1">
+                    <Briefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-1">{exp.role}</h3>
+                    <p className="text-md text-neutral-600 dark:text-neutral-400 mb-1">{exp.company}</p>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-500 mb-3">{exp.years}</p>
+                    <ul className="list-disc list-outside pl-5 space-y-1 text-neutral-600 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={i}>{resp}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-1">{exp.role}</h3>
-                <p className="text-md text-neutral-600 dark:text-neutral-400 mb-1">{exp.company}</p>
-                <p className="text-sm text-neutral-500 dark:text-neutral-500 mb-3">{exp.years}</p>
-                <ul className="list-disc list-outside pl-5 space-y-1 text-neutral-600 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
-                  {exp.responsibilities.map((resp, i) => (
-                    <li key={i}>{resp}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            </LiquidGlass>
           </motion.div>
         ))}
       </div>
@@ -236,21 +251,28 @@ function SkillsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white dark:bg-neutral-900 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-1.5 bg-green-400/20 dark:bg-green-500/20 rounded-full">
-                <Sparkles className="w-5 h-5 text-green-600 dark:text-green-400" />
+            <LiquidGlass 
+              className="rounded-xl overflow-hidden"
+              color="#10b981"
+              opacity={0.2}
+            >
+              <div className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-1.5 bg-green-400/20 dark:bg-green-500/20 rounded-full">
+                    <Sparkles className="w-5 h-5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100">{skillCat.category}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skillCat.items.map(item => (
+                    <span key={item} className="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full text-sm font-medium">
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100">{skillCat.category}</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {skillCat.items.map(item => (
-                <span key={item} className="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full text-sm font-medium">
-                  {item}
-                </span>
-              ))}
-            </div>
+            </LiquidGlass>
           </motion.div>
         ))}
       </div>
@@ -329,37 +351,49 @@ export default function HomePage() {
             Selected Work 
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((proj) => (
-              <Link
+            {projects.map((proj, index) => (
+              <motion.div
                 key={proj.id}
-                href={proj.link}
-                // --- MODIFIED: REDUCED HEIGHT (h-80) ---
-                className="group block relative overflow-hidden rounded-xl border border-neutral-200/20 dark:border-neutral-800/80 shadow-lg hover:shadow-yellow-500/10 dark:hover:shadow-yellow-400/10 transition-all duration-300 h-60"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {/* Blurred Background Image */}
-                <div
-                  style={{ backgroundImage: `url(${proj.image})` }}
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 blur-sm"
-                />
+                <LiquidGlass 
+                  className="rounded-xl overflow-hidden h-60"
+                  color={index % 3 === 0 ? "#8b5cf6" : index % 3 === 1 ? "#06b6d4" : "#f59e0b"}
+                  opacity={0.3}
+                >
+                  <Link
+                    href={proj.link}
+                    className="group block relative overflow-hidden rounded-xl border border-neutral-200/20 dark:border-neutral-800/80 shadow-lg hover:shadow-yellow-500/10 dark:hover:shadow-yellow-400/10 transition-all duration-300 h-60"
+                  >
+                    {/* Blurred Background Image */}
+                    <div
+                      style={{ backgroundImage: `url(${proj.image})` }}
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 blur-sm"
+                    />
 
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/60 dark:bg-black/70 group-hover:bg-black/50 dark:group-hover:bg-black/60 transition-colors duration-300" />
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-black/60 dark:bg-black/70 group-hover:bg-black/50 dark:group-hover:bg-black/60 transition-colors duration-300" />
 
-                {/* Content */}
-                <div className="relative flex flex-col h-full p-6 sm:p-8">
-                  <div className="flex-grow">
-                    <h3 className="uppercase tracking-wider text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">
-                      {proj.title}
-                    </h3>
-                    <p className="text-neutral-300 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
-                      {proj.description}
-                    </p>
-                  </div>
-                  <span className="uppercase tracking-wider text-sm flex items-center text-yellow-500 dark:text-yellow-400 font-semibold mt-4">
-                    View Project <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
+                    {/* Content */}
+                    <div className="relative flex flex-col h-full p-6 sm:p-8 backdrop-blur-sm">
+                      <div className="flex-grow">
+                        <h3 className="uppercase tracking-wider text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">
+                          {proj.title}
+                        </h3>
+                        <p className="text-neutral-300 dark:text-neutral-400 text-base leading-relaxed tracking-tight font-sans">
+                          {proj.description}
+                        </p>
+                      </div>
+                      <span className="uppercase tracking-wider text-sm flex items-center text-yellow-500 dark:text-yellow-400 font-semibold mt-4">
+                        View Project <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                </LiquidGlass>
+              </motion.div>
             ))}
           </div>
         </section>
