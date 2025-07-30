@@ -1,7 +1,6 @@
-
 'use client';
 
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline/next';
 
 interface SplineWrapperProps {
@@ -11,8 +10,18 @@ interface SplineWrapperProps {
 }
 
 const SplineWrapper: React.FC<SplineWrapperProps> = ({ scene, className, style }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   if (!scene) {
     return <p className="text-center text-red-500">Spline scene not provided.</p>;
+  }
+
+  if (!mounted) {
+    return <div className={className} style={style}>Loading...</div>;
   }
 
   // The Spline component from '@splinetool/react-spline/next'

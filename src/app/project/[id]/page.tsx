@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowLeft, Github, Linkedin, Youtube } from 'lucide-react';
+
+import { ArrowLeft, Github, Linkedin, Youtube, ExternalLink } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProjectById } from '@/data/projects';
