@@ -3,89 +3,23 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { ArrowDown, Github, Linkedin, ArrowRight, Video, ChevronsDown, Sun, Moon, Mail, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, ArrowRight, ChevronsDown, Sun, Moon, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { LiquidGlass } from '@/components/ui/liquid-glass';
 
-// Lazy-load 3D model only on client - removed redundant loading property
+// Import centralized data
+import { projects } from '@/data/projects';
+import { educationData } from '@/data/education';
+import { experienceData } from '@/data/experience';
+import { skillsData } from '@/data/skills';
+
+// Lazy-load 3D model only on client
+
 const SplineWrapper = dynamic(() => import('@/app/components/SplineWrapper'), {
   ssr: false,
 });
 
-// Project data with updated, more relevant images
-const projectDisplayData = {
-
-
-  'autonomous-chess-robot': {
-    title: 'Poject ARC',
-    description: 'Vision-driven robotic system autonomously playing chess via deep learning perception and manipulation.',
-    image: '/images/chess1.jpg',
-  },
-
-  'assistive-robot-control': {
-    title: 'Assistive Robot Control System',
-    description: 'Vision-based robotic hand control using real-time gesture recognition and machine learning.',
-    image: '/images/hand2.jpg',
-  },
-
-
-  'ai-chatbot': {
-    title: 'AI-Powered Productivity & Wellness Companion',
-    description: 'NLP-powered modern web application designed to be a holistic companion for productivity and mental well-being.',
-    image: '/images/chat.jpg',
-  },
-  
-
-
-  'multi-robot-solar': {
-    title: 'Multi-Robot Solar-Powered System',
-    description: 'Cooperative multi-robot system with solar-powered UGVs and UAVs for efficient exploration and coverage.',
-    image: '/images/mrs.jpg',
-  },
-  'ur5-trajectory': {
-    title: 'UR5 Trajectory Planning',
-    description: 'Advanced trajectory planning system for UR5 robotic arm.',
-    image: '/images/ur5.jpg',
-  },
-  'weather-forecasting': {
-    title: 'Weather Forecasting System',
-    description: 'Advanced weather forecasting system using machine learning.',
-    image: '/images/weather.jpg',
-  },
-
- 
-
-} as const;
-
-
-const projects = Object.entries(projectDisplayData).map(([id, data]) => ({
-  id,
-  ...data,
-  link: `/project/${id}`,
-}));
-
-// Placeholder data and components for Education, Experience, Skills
-
-/// --- Education Section ---
-const educationData = [
-  {
-    id: 1,
-    degree: 'Master of Science in Robotics & Autonomous Systems (AI)',
-    institution: 'Arizona State University',
-    years: '2024 - 2026',
-    gpa: '3.89', // GPA is now a separate property
-    description: 'Specializing in the application of Artificial Intelligence and advanced mathematical concepts to solve complex problems in robotics. Key coursework includes: Advances in Robotics Learning, Multi-Robot Systems, Knowledge Representation.',
-  },
-  {
-    id: 2,
-    degree: 'Bachelor of Technology in Robotics, AI & Machine Learning',
-    institution: 'Srinivas University',
-    years: '2020 - 2024',
-    gpa: '8.5', // GPA is now a separate property
-    description: 'Developed a strong foundation in intelligent systems through comprehensive studies in software engineering. Foundational coursework included: Machine Learning, Computer Vision, and Data Structures & Algorithms.',
-  },
-];
-
+// --- Education Section ---
 function EducationSection() {
   return (
     <section>
@@ -130,6 +64,7 @@ function EducationSection() {
 }
 
 // --- Experience Section ---
+
 const experienceData = [
   {
     id: 1,
@@ -212,31 +147,6 @@ function ExperienceSection() {
 }
 
 // --- Skills Section ---
-// --- Skills Section ---
-// Strategically reorganized and updated to align with 2025 AI/Robotics job market requirements.
-const skillsData = [
-  {
-    category: 'AI / ML Frameworks & Libraries',
-    items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Pandas', 'NumPy', 'OpenCV', 'Hugging Face'],
-  },
-  {
-    category: 'Key Concepts & Specializations',
-    items: ['Computer Vision', 'NLP', 'Reinforcement Learning', 'Deep Learning', 'Sensor Fusion', 'SLAM', 'LLMs', 'Transformer Architecture'],
-  },
-  {
-    category: 'Robotics & Simulation',
-    items: ['ROS / ROS 2', 'Gazebo', 'NVIDIA Isaac Sim', 'UR5 / Robot Arm Control', 'Motion Planning (MoveIt)', 'Arduino'],
-  },
-  {
-    category: 'Developer Tools & Platforms',
-    items: ['Git', 'Docker', 'Linux', 'CI/CD (GitHub Actions)', 'Jupyter Notebooks', 'AWS / GCP (Basics)'],
-  },
-  {
-    category: 'Languages',
-    items: ['Python', 'C++'],
-  },
-];
-
 function SkillsSection() {
   return (
     <section>
@@ -279,7 +189,6 @@ function SkillsSection() {
     </section>
   );
 }
-
 
 export default function HomePage() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -335,7 +244,6 @@ export default function HomePage() {
 
       <main className="pt-16 flex-grow bg-white dark:bg-black">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          {/* --- MODIFIED: RESPONSIVE H1 TITLE --- */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-widest text-center text-neutral-900 dark:text-white mb-2 break-words">
             Robotics Engineer
           </h1>
@@ -354,10 +262,9 @@ export default function HomePage() {
             {projects.map((proj, index) => (
               <motion.div
                 key={proj.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                href={`/project/${proj.id}`}
+                className="group block relative overflow-hidden rounded-xl border border-neutral-200/20 dark:border-neutral-800/80 shadow-lg hover:shadow-yellow-500/10 dark:hover:shadow-yellow-400/10 transition-all duration-300 h-60"
+
               >
                 <LiquidGlass 
                   className="rounded-xl overflow-hidden h-60"
