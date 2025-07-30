@@ -1,7 +1,7 @@
 'use client';
 
 import React, { CSSProperties, useEffect, useState } from 'react';
-import Spline from '@splinetool/react-spline/next';
+import Spline from '@splinetool/react-spline/jsx';
 
 interface SplineWrapperProps {
   scene: string; // Path to the .splinecode file, e.g., /models/scene.splinecode
